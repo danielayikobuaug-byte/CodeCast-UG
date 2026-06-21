@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "avatar-1",
+      "description": "User profile avatar",
+      "imageUrl": "https://picsum.photos/seed/user1/100/100",
+      "imageHint": "profile avatar"
+    },
+    {
+      "id": "avatar-2",
+      "description": "User profile avatar 2",
+      "imageUrl": "https://picsum.photos/seed/user2/100/100",
+      "imageHint": "profile avatar"
+    },
+    {
+      "id": "event-1",
+      "description": "Traffic incident photo",
+      "imageUrl": "https://picsum.photos/seed/traffic/600/400",
+      "imageHint": "traffic road"
+    },
+    {
+      "id": "event-2",
+      "description": "Concert crowd",
+      "imageUrl": "https://picsum.photos/seed/concert/600/400",
+      "imageHint": "concert crowd"
+    }
+  ]
+}
