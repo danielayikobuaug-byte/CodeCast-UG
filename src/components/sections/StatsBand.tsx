@@ -38,13 +38,13 @@ export function StatsBand({ className }: { className?: string }) {
     <section className={cn("py-20 bg-foreground text-white relative overflow-hidden", className)}>
       <div className="absolute inset-0 bg-primary/10" />
       <div className="container relative z-10 px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-center">
           {STATS_DATA.map((stat, idx) => (
-            <div key={idx}>
-              <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">
+            <div key={idx} className="flex flex-col items-center">
+              <p className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-accent mb-3 tracking-tighter">
                 {counts[idx]}{stat.suffix}
               </p>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/60">
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/60">
                 {stat.label}
               </p>
             </div>
