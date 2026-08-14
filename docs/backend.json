@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "ClientLogo": {
+      "title": "Client Logo",
+      "description": "A logo of a trusted partner organization",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the client"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the logo image"
+        },
+        "order": {
+          "type": "number",
+          "description": "Display order"
+        }
+      },
+      "required": ["name", "imageUrl"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "A portfolio project",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "tag": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "iconName": { "type": "string" }
+      }
+    },
+    "Message": {
+      "title": "Contact Message",
+      "description": "A message from the contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "service": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password"]
+  },
+  "firestore": {
+    "/client-logos/{logoId}": {
+      "schema": "ClientLogo",
+      "description": "Collection of partner logos for the home page"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Portfolio projects"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "User inquiries"
+    }
+  }
+}

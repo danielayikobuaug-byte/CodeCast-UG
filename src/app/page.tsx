@@ -1,6 +1,8 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { 
   Laptop, 
   Smartphone, 
@@ -20,28 +22,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { HeroStats } from "@/components/sections/HeroStats";
+import { useCollection, useFirestore } from "@/firebase";
+import { collection, query, orderBy } from "firebase/firestore";
+import { useMemoFirebase } from "@/firebase/use-memo-firebase";
+
+const CATEGORIES = [
+  "Software Development", 
+  "Digital Marketing", 
+  "Smart Home Devices", 
+  "Startup MVPS", 
+  "Automated Call Centers", 
+  "Child Monitoring",
+  "Business IPTV",
+  "Custom Web Apps",
+  "Mobile Solutions",
+  "Network Security",
+  "Cloud Architecture",
+  "24/7 Remote Support"
+];
 
 export default function Home() {
-  const categories = [
-    "Software Development", 
-    "Digital Marketing", 
-    "Smart Home Devices", 
-    "Startup MVPS", 
-    "Automated Call Centers", 
-    "Child Monitoring",
-    "Business IPTV",
-    "Custom Web Apps",
-    "Mobile Solutions",
-    "Network Security",
-    "Cloud Architecture",
-    "24/7 Remote Support"
-  ];
+  const db = useFirestore();
+  const logosQuery = useMemoFirebase(() => {
+    return query(collection(db, 'client-logos'), orderBy('order', 'asc'));
+  }, [db]);
+
+  const { data: logos, loading: logosLoading } = useCollection(logosQuery);
 
   return (
     <div className="flex flex-col gap-0">
       {/* Hero Section */}
       <section className="relative min-h-[70vh] lg:min-h-[650px] flex items-center overflow-hidden bg-foreground">
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src="https://picsum.photos/seed/codecast-industrial/1920/1080"
@@ -51,7 +62,6 @@ export default function Home() {
             priority
             data-ai-hint="industrial technology"
           />
-          {/* Subtle Grid Overlay */}
           <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ 
             backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)',
             backgroundSize: '80px 80px'
@@ -61,7 +71,6 @@ export default function Home() {
 
         <div className="container relative z-10 px-4 pt-16 pb-20 h-full flex flex-col justify-center">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
             <div className="lg:col-span-8 flex flex-col gap-6">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -82,12 +91,11 @@ export default function Home() {
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-8 h-12 text-sm" asChild>
                   <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-10 h-12 text-sm font-bold">
+                <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-xl px-10 h-12 text-sm font-bold" asChild>
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
 
-              {/* Slider Controls */}
               <div className="flex items-center gap-6 mt-8">
                 <div className="flex gap-2">
                   <Button size="icon" variant="outline" className="rounded-full w-8 h-8 border-white/10 text-white/40 hover:text-white">
@@ -106,22 +114,19 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Stats Stack - Now using HeroStats Component */}
             <div className="lg:col-span-4 hidden lg:block">
               <HeroStats />
             </div>
           </div>
         </div>
 
-        {/* Bottom Category Bar - Sliding Continuous */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20 overflow-hidden">
           <div className="py-4">
-            <div className="announcement-track flex items-center gap-12 whitespace-nowrap">
-               {categories.map((label, idx) => (
+            <div className="hero-marquee-track flex items-center gap-12 whitespace-nowrap">
+               {CATEGORIES.map((label, idx) => (
                 <CategoryItem key={idx} label={label} active={idx % 4 === 0} />
                ))}
-               {/* Duplicated for seamless loop */}
-               {categories.map((label, idx) => (
+               {CATEGORIES.map((label, idx) => (
                 <CategoryItem key={`dup-${idx}`} label={label} active={idx % 4 === 0} />
                ))}
             </div>
@@ -129,23 +134,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trusted By - Endless Sliding Marquee */}
+      {/* Trusted By - Dynamic endless scroll */}
       <section className="py-12 bg-secondary/30 border-y overflow-hidden">
         <div className="container px-4 mb-8">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">Trusted by leading organizations</p>
         </div>
         <div className="relative flex overflow-hidden">
-          <div className="announcement-track whitespace-nowrap flex items-center gap-16 md:gap-32 px-4 opacity-60">
-             {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
-              <div key={idx} className="text-foreground font-black text-2xl md:text-3xl italic grayscale shrink-0">
-                CLIENT_{i}
-              </div>
-            ))}
-             {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
-              <div key={`dup-${idx}`} className="text-foreground font-black text-2xl md:text-3xl italic grayscale shrink-0">
-                CLIENT_{i}
-              </div>
-            ))}
+          <div className="trusted-marquee-track whitespace-nowrap flex items-center gap-16 md:gap-32 px-4 opacity-60">
+            {logos && logos.length > 0 ? (
+              <>
+                {logos.map((logo: any) => (
+                  <div key={logo.id} className="relative h-12 w-32 grayscale shrink-0 transition-all hover:grayscale-0">
+                    <Image 
+                      src={logo.imageUrl} 
+                      alt={logo.name} 
+                      fill 
+                      className="object-contain" 
+                    />
+                  </div>
+                ))}
+                {logos.map((logo: any) => (
+                  <div key={`dup-${logo.id}`} className="relative h-12 w-32 grayscale shrink-0 transition-all hover:grayscale-0">
+                    <Image 
+                      src={logo.imageUrl} 
+                      alt={logo.name} 
+                      fill 
+                      className="object-contain" 
+                    />
+                  </div>
+                ))}
+              </>
+            ) : (
+              // Fallback if no logos in Firestore
+              [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <div key={i} className="text-foreground font-black text-2xl md:text-3xl italic grayscale shrink-0">
+                  CLIENT_{i}
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -227,7 +253,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Band */}
       <section className="py-20 bg-foreground text-white">
         <div className="container px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -251,7 +276,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section className="py-24 bg-secondary/20">
         <div className="container px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -285,7 +309,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 bg-primary">
         <div className="container px-4 text-center text-white">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to future-proof your business?</h2>
