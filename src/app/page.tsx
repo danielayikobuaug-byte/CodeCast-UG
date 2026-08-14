@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-0">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] lg:min-h-[650px] flex items-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[60vh] lg:min-h-[550px] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://picsum.photos/seed/codecast-industrial/1920/1080"
@@ -69,47 +69,47 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-transparent" />
         </div>
 
-        <div className="container relative z-10 px-4 pt-16 pb-20 h-full flex flex-col justify-center">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-8 flex flex-col gap-6">
+        <div className="container relative z-10 px-4 pt-12 pb-16 h-full flex flex-col justify-center">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+            <div className="lg:col-span-8 flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Next-Gen Solutions</span>
               </div>
               
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter max-w-2xl">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1] tracking-tighter max-w-xl">
                 Apps your <br />
                 customers <br />
                 <span className="text-accent">will love to use.</span>
               </h1>
               
-              <p className="text-sm md:text-base text-white/60 max-w-lg font-medium leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 max-w-md font-medium leading-relaxed">
                 We craft high-performance iOS and Android apps with beautiful interfaces and rock-solid backends, delivered fast.
               </p>
               
-              <div className="flex flex-wrap gap-4 mt-2">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-8 h-12 text-sm" asChild>
+              <div className="flex flex-wrap gap-3 mt-2">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-6 h-10 text-xs" asChild>
                   <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-xl px-10 h-12 text-sm font-bold" asChild>
+                <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-xl px-8 h-10 text-xs font-bold" asChild>
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
 
-              <div className="flex items-center gap-6 mt-8">
+              <div className="flex items-center gap-4 mt-6">
                 <div className="flex gap-2">
-                  <Button size="icon" variant="outline" className="rounded-full w-8 h-8 border-white/10 text-white/40 hover:text-white">
-                    <ChevronLeft className="w-4 h-4" />
+                  <Button size="icon" variant="outline" className="rounded-full w-7 h-7 border-white/10 text-white/40 hover:text-white">
+                    <ChevronLeft className="w-3 h-3" />
                   </Button>
-                  <Button size="icon" variant="outline" className="rounded-full w-8 h-8 border-white/10 text-white/40 hover:text-white">
-                    <ChevronRight className="w-4 h-4" />
+                  <Button size="icon" variant="outline" className="rounded-full w-7 h-7 border-white/10 text-white/40 hover:text-white">
+                    <ChevronRight className="w-3 h-3" />
                   </Button>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="h-[2px] w-12 bg-white/10 relative overflow-hidden">
+                <div className="flex items-center gap-3">
+                  <div className="h-[2px] w-10 bg-white/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-accent w-1/2" />
                   </div>
-                  <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">02 / 03</span>
+                  <span className="text-[9px] font-bold text-white/40 uppercase tracking-widest">02 / 03</span>
                 </div>
               </div>
             </div>
@@ -121,8 +121,8 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20 overflow-hidden">
-          <div className="py-4">
-            <div className="hero-marquee-track flex items-center gap-12 whitespace-nowrap">
+          <div className="py-3">
+            <div className="hero-marquee-track flex items-center gap-10 whitespace-nowrap">
                {CATEGORIES.map((label, idx) => (
                 <CategoryItem key={idx} label={label} active={idx % 4 === 0} />
                ))}
@@ -134,17 +134,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trusted By - Dynamic endless scroll */}
-      <section className="py-12 bg-secondary/30 border-y overflow-hidden">
+      {/* Trusted By - Dynamic endless scroll with brand colors */}
+      <section className="py-12 bg-white border-y overflow-hidden">
         <div className="container px-4 mb-8">
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">Trusted by leading organizations</p>
+          <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Trusted by leading organizations</p>
         </div>
         <div className="relative flex overflow-hidden">
-          <div className="trusted-marquee-track whitespace-nowrap flex items-center gap-16 md:gap-32 px-4 opacity-60">
+          <div className="trusted-marquee-track whitespace-nowrap flex items-center gap-16 md:gap-32 px-4">
             {logos && logos.length > 0 ? (
               <>
                 {logos.map((logo: any) => (
-                  <div key={logo.id} className="relative h-12 w-32 grayscale shrink-0 transition-all hover:grayscale-0">
+                  <div key={logo.id} className="relative h-12 w-32 shrink-0 transition-transform hover:scale-110">
                     <Image 
                       src={logo.imageUrl} 
                       alt={logo.name} 
@@ -154,7 +154,7 @@ export default function Home() {
                   </div>
                 ))}
                 {logos.map((logo: any) => (
-                  <div key={`dup-${logo.id}`} className="relative h-12 w-32 grayscale shrink-0 transition-all hover:grayscale-0">
+                  <div key={`dup-${logo.id}`} className="relative h-12 w-32 shrink-0 transition-transform hover:scale-110">
                     <Image 
                       src={logo.imageUrl} 
                       alt={logo.name} 
@@ -165,10 +165,10 @@ export default function Home() {
                 ))}
               </>
             ) : (
-              // Fallback if no logos in Firestore
+              // Fallback logic if no logos are uploaded yet
               [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={i} className="text-foreground font-black text-2xl md:text-3xl italic grayscale shrink-0">
-                  CLIENT_{i}
+                <div key={i} className="text-foreground font-black text-2xl md:text-3xl italic grayscale opacity-20 shrink-0">
+                  PARTNER_{i}
                 </div>
               ))
             )}
@@ -177,12 +177,12 @@ export default function Home() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-background">
+      <section className="py-20 bg-background">
         <div className="container px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Badge className="mb-4">Our Expertise</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Software & Systems</h2>
-            <p className="text-muted-foreground text-lg">From your first line of code to complex network solutions, we cover every layer of your technology stack.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Software & Systems</h2>
+            <p className="text-muted-foreground text-base">From your first line of code to complex network solutions, we cover every layer of your technology stack.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -224,10 +224,10 @@ export default function Home() {
             />
           </div>
 
-          <div className="text-center max-w-3xl mx-auto mt-24 mb-16">
+          <div className="text-center max-w-3xl mx-auto mt-20 mb-16">
             <Badge variant="outline" className="mb-4 border-primary text-primary">Entertainment</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Smart TV & IPTV</h2>
-            <p className="text-muted-foreground text-lg">Innovative entertainment technology for homes and businesses across Uganda.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Smart TV & IPTV</h2>
+            <p className="text-muted-foreground text-base">Innovative entertainment technology for homes and businesses across Uganda.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -253,33 +253,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-foreground text-white">
+      <section className="py-16 bg-foreground text-white">
         <div className="container px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl md:text-6xl font-bold text-accent mb-2">100+</p>
-              <p className="text-sm font-medium uppercase tracking-wider text-white/60">Projects Delivered</p>
+              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">100+</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Projects Delivered</p>
             </div>
             <div>
-              <p className="text-4xl md:text-6xl font-bold text-accent mb-2">50+</p>
-              <p className="text-sm font-medium uppercase tracking-wider text-white/60">Happy Clients</p>
+              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">50+</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Happy Clients</p>
             </div>
             <div>
-              <p className="text-4xl md:text-6xl font-bold text-accent mb-2">12</p>
-              <p className="text-sm font-medium uppercase tracking-wider text-white/60">Core Services</p>
+              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">12</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Core Services</p>
             </div>
             <div>
-              <p className="text-4xl md:text-6xl font-bold text-accent mb-2">24/7</p>
-              <p className="text-sm font-medium uppercase tracking-wider text-white/60">Support</p>
+              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">24/7</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Support</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-secondary/20">
+      <section className="py-20 bg-secondary/20">
         <div className="container px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-2xl">
               <Image 
                 src="https://picsum.photos/seed/codecast2/800/1000" 
                 alt="Working at CodeCast" 
@@ -288,9 +288,9 @@ export default function Home() {
                 data-ai-hint="software developers"
               />
             </div>
-            <div className="flex flex-col gap-8">
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight text-foreground">Built On Trust, Delivered With Precision</h2>
-              <div className="space-y-6">
+            <div className="flex flex-col gap-6">
+              <h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground">Built On Trust, Delivered With Precision</h2>
+              <div className="space-y-5">
                 <FeatureItem 
                   title="Experienced Team" 
                   desc="Engineers, network technicians and designers working as one unit."
@@ -309,11 +309,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-primary">
+      <section className="py-16 bg-primary">
         <div className="container px-4 text-center text-white">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to future-proof your business?</h2>
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Talk to our team today and let's plan the right technology or entertainment solution for you.</p>
-          <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg border-white/20" asChild>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6">Ready to future-proof your business?</h2>
+          <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">Talk to our team today and let's plan the right technology or entertainment solution for you.</p>
+          <Button size="lg" variant="secondary" className="rounded-full px-10 h-12 text-sm border-white/20" asChild>
             <Link href="/contact">Contact CodeCast UG LTD</Link>
           </Button>
         </div>
@@ -327,7 +327,7 @@ function CategoryItem({ label, active }: { label: string, active?: boolean }) {
     <div className="flex items-center gap-3">
       <div className={cn("w-1.5 h-1.5 rounded-full", active ? "bg-accent" : "bg-white/20")} />
       <span className={cn(
-        "text-[10px] font-bold uppercase tracking-widest transition-colors",
+        "text-[9px] font-bold uppercase tracking-widest transition-colors",
         active ? "text-white" : "text-white/40"
       )}>
         {label}
@@ -339,13 +339,13 @@ function CategoryItem({ label, active }: { label: string, active?: boolean }) {
 function ServiceCard({ icon, title, desc, href }: { icon: React.ReactNode, title: string, desc: string, href: string }) {
   return (
     <Card className="group hover:border-primary/50 transition-all hover:shadow-xl rounded-2xl overflow-hidden border-muted">
-      <CardContent className="p-8">
-        <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+      <CardContent className="p-6">
+        <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-3 text-foreground">{title}</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed mb-6">{desc}</p>
-        <Link href={href} className="inline-flex items-center text-primary font-bold text-sm">
+        <h3 className="text-lg font-bold mb-2 text-foreground">{title}</h3>
+        <p className="text-muted-foreground text-xs leading-relaxed mb-4">{desc}</p>
+        <Link href={href} className="inline-flex items-center text-primary font-bold text-xs">
           Learn more <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </CardContent>
@@ -357,11 +357,11 @@ function FeatureItem({ title, desc }: { title: string, desc: string }) {
   return (
     <div className="flex gap-4">
       <div className="mt-1">
-        <CheckCircle2 className="h-6 w-6 text-primary" />
+        <CheckCircle2 className="h-5 w-5 text-primary" />
       </div>
       <div>
-        <h4 className="text-lg font-bold mb-1 text-foreground">{title}</h4>
-        <p className="text-muted-foreground">{desc}</p>
+        <h4 className="text-base font-bold mb-1 text-foreground">{title}</h4>
+        <p className="text-sm text-muted-foreground">{desc}</p>
       </div>
     </div>
   );
