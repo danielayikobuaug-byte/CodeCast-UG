@@ -35,6 +35,33 @@
       },
       "required": ["title", "imageUrl"]
     },
+    "BlogPost": {
+      "title": "Blog Post",
+      "description": "An article for the news and blog section",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "author": { "type": "string" }
+      },
+      "required": ["title", "category", "content"]
+    },
+    "Subscriber": {
+      "title": "Newsletter Subscriber",
+      "description": "A user who signed up for updates via the pop-up",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email"]
+    },
     "SiteAsset": {
       "title": "Site Asset",
       "description": "A global configuration for the site (e.g., logos, hero backgrounds)",
@@ -72,13 +99,21 @@
       "schema": "Project",
       "description": "Portfolio projects"
     },
+    "/blog-posts/{postId}": {
+      "schema": "BlogPost",
+      "description": "News and blog articles"
+    },
+    "/subscribers/{subscriberId}": {
+      "schema": "Subscriber",
+      "description": "Newsletter leads from the stay connected popup"
+    },
     "/site-assets/{assetId}": {
       "schema": "SiteAsset",
       "description": "Global site configurations and image assets"
     },
     "/messages/{messageId}": {
       "schema": "Message",
-      "description": "User inquiries"
+      "description": "User inquiries from the contact page"
     }
   }
 }

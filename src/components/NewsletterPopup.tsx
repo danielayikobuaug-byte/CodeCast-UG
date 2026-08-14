@@ -2,14 +2,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Check, Mail } from "lucide-react"
+import { X, Check, Mail, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
+import { useFirestore } from "@/firebase"
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore"
+import { toast } from "@/hooks/use-toast"
 
 export function NewsletterPopup() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const db = useFirestore()
 
   useEffect(() => {
     const hasHandled = localStorage.getItem('newsletter-handled')
@@ -24,10 +28,32 @@ export function NewsletterPopup() {
     localStorage.setItem('newsletter-handled', 'true')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    setTimeout(() => handleClose(), 2000)
+    setLoading(true)
+
+    const formData = new FormData(e.currentTarget)
+    const email = formData.get('email') as string
+    const name = formData.get('name') as string
+    const phone = formData.get('phone') as string
+
+    try {
+      const id = Date.now().toString()
+      await setDoc(doc(db, 'subscribers', id), {
+        id,
+        name,
+        email,
+        phone,
+        timestamp: serverTimestamp()
+      })
+      
+      setIsSubmitted(true)
+      setTimeout(() => handleClose(), 3000)
+    } catch (error: any) {
+      toast({ variant: 'destructive', title: 'Signup failed', description: error.message })
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (!isVisible) return null
@@ -43,7 +69,7 @@ export function NewsletterPopup() {
         </button>
 
         <div className="grid md:grid-cols-2">
-          <div className="bg-gradient-to-br from-navy-900 to-primary p-10 text-white">
+          <div className="bg-gradient-to-br from-[#0E1D30] to-primary p-10 text-white">
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
               <Mail className="h-6 w-6" />
             </div>
@@ -62,34 +88,35 @@ export function NewsletterPopup() {
 
           <div className="p-10">
             {isSubmitted ? (
-              <div className="flex h-full flex-col items-center justify-center text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
+              <div className="flex h-full flex-col items-center justify-center text-center py-10">
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 animate-bounce">
                   <Check className="h-8 w-8" />
                 </div>
-                <h4 className="text-xl font-bold text-navy-900">Success!</h4>
-                <p className="text-sm text-gray-500">Thanks for subscribing. We'll be in touch.</p>
+                <h4 className="text-xl font-bold text-[#0E1D30]">You're Subscribed!</h4>
+                <p className="text-sm text-gray-500">Thanks for joining our newsletter. We'll be in touch soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase text-gray-400">Full Name *</label>
-                  <Input placeholder="John Doe" required className="rounded-xl border-gray-200" />
+                  <Input name="name" placeholder="John Doe" required className="rounded-xl border-gray-200" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase text-gray-400">Email Address *</label>
-                  <Input type="email" placeholder="john@example.com" required className="rounded-xl border-gray-200" />
+                  <Input name="email" type="email" placeholder="john@example.com" required className="rounded-xl border-gray-200" />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase text-gray-400">Phone Number *</label>
-                  <Input type="tel" placeholder="+256 700 000 000" required className="rounded-xl border-gray-200" />
+                  <label className="text-xs font-bold uppercase text-gray-400">Phone Number</label>
+                  <Input name="phone" type="tel" placeholder="+256 7XX XXX XXX" className="rounded-xl border-gray-200" />
                 </div>
-                <Button type="submit" className="mt-2 h-12 w-full rounded-xl bg-primary">
+                <Button type="submit" disabled={loading} className="mt-2 h-12 w-full rounded-xl bg-primary text-white font-bold">
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                   Subscribe Now
                 </Button>
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="mt-2 text-xs font-medium text-gray-400 underline"
+                  className="mt-2 text-xs font-medium text-gray-400 underline hover:text-primary"
                 >
                   No thanks, maybe later
                 </button>
