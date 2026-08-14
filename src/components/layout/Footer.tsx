@@ -1,20 +1,41 @@
 
+"use client"
+
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useDoc, useFirestore } from "@/firebase";
+import { doc } from "firebase/firestore";
+import Image from "next/image";
 
 export function Footer() {
+  const db = useFirestore();
+  const { data: logoAsset } = useDoc(doc(db, 'site-assets', 'main-logo'));
+
   return (
     <footer className="bg-secondary/30 pt-24 pb-12 border-t">
       <div className="container px-4">
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
-                <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
-              </div>
-              <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
+              {logoAsset?.value ? (
+                <div className="relative h-10 w-32">
+                  <Image 
+                    src={logoAsset.value} 
+                    alt="CodeCast UG Logo" 
+                    fill 
+                    className="object-contain object-left" 
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
+                  </div>
+                  <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
+                </div>
+              )}
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Technology and entertainment solutions provider based in Kampala, Uganda. We code smart and stream the world.

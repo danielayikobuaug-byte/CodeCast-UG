@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser } from '@/firebase';
@@ -12,7 +13,9 @@ import {
   Settings, 
   LogOut,
   Loader2,
-  ChevronRight
+  ChevronRight,
+  Image as ImageIcon,
+  ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -23,9 +26,9 @@ import { useAuth } from '@/firebase';
 const ADMIN_NAV = [
   { label: 'Overview', icon: LayoutDashboard, href: '/admin' },
   { label: 'Projects', icon: FolderKanban, href: '/admin/projects' },
-  { label: 'Blog Posts', icon: Newspaper, href: '/admin/blog' },
+  { label: 'Site Assets', icon: ImageIcon, href: '/admin/assets' },
+  { label: 'Partner Logos', icon: ShieldCheck, href: '/admin/client-logos' },
   { label: 'Messages', icon: MessageSquare, href: '/admin/messages' },
-  { label: 'Subscribers', icon: Users, href: '/admin/subscribers' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

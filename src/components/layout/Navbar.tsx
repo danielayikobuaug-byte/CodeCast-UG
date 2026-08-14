@@ -1,16 +1,22 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useDoc, useFirestore } from "@/firebase";
+import { doc } from "firebase/firestore";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const db = useFirestore();
+  const { data: logoAsset } = useDoc(doc(db, 'site-assets', 'main-logo'));
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -43,12 +49,26 @@ export function Navbar() {
       )}>
         <div className="container px-4 h-full flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
-              <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
-            </div>
+            {logoAsset?.value ? (
+              <div className="relative h-10 w-32">
+                <Image 
+                  src={logoAsset.value} 
+                  alt="CodeCast UG Logo" 
+                  fill 
+                  className="object-contain object-left" 
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
+                  <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
+                </div>
+                <div className="flex flex-col leading-none">
+                  <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
+                </div>
+              </div>
+            )}
           </Link>
           
           <div className="hidden lg:flex flex-1 justify-center gap-1">

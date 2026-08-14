@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "ClientLogo": {
@@ -29,8 +30,21 @@
         "description": { "type": "string" },
         "tag": { "type": "string" },
         "imageUrl": { "type": "string" },
-        "iconName": { "type": "string" }
-      }
+        "iconName": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "imageUrl"]
+    },
+    "SiteAsset": {
+      "title": "Site Asset",
+      "description": "A global configuration for the site (e.g., logos, hero backgrounds)",
+      "type": "object",
+      "properties": {
+        "key": { "type": "string", "description": "Unique key (e.g., 'main-logo')" },
+        "value": { "type": "string", "description": "The URL or value of the asset" },
+        "type": { "type": "string", "enum": ["image", "text"] }
+      },
+      "required": ["key", "value", "type"]
     },
     "Message": {
       "title": "Contact Message",
@@ -57,6 +71,10 @@
     "/projects/{projectId}": {
       "schema": "Project",
       "description": "Portfolio projects"
+    },
+    "/site-assets/{assetId}": {
+      "schema": "SiteAsset",
+      "description": "Global site configurations and image assets"
     },
     "/messages/{messageId}": {
       "schema": "Message",
