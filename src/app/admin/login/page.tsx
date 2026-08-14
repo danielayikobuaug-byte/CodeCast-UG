@@ -7,8 +7,11 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, Lock, Mail, Loader2 } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2, AlertCircle } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+const ALLOWED_ADMINS = ['info@codecastug.com', 'joelhitech111@gmail.com'];
 
 export default function AdminLoginPage() {
   const auth = useAuth();
@@ -16,10 +19,25 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
+
+    // Enforce allowed admin emails
+    if (!ALLOWED_ADMINS.includes(email.toLowerCase())) {
+      const msg = "Access Denied: This email is not authorized for administrative access.";
+      setError(msg);
+      toast({
+        variant: "destructive",
+        title: "Unauthorized",
+        description: msg,
+      });
+      setLoading(false);
+      return;
+    }
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -29,10 +47,12 @@ export default function AdminLoginPage() {
       });
       router.push('/admin');
     } catch (error: any) {
+      const msg = error.message || "Invalid credentials.";
+      setError(msg);
       toast({
         variant: "destructive",
         title: "Login Failed",
-        description: error.message || "Invalid credentials.",
+        description: msg,
       });
     } finally {
       setLoading(false);
@@ -53,14 +73,22 @@ export default function AdminLoginPage() {
           </div>
         </CardHeader>
         <CardContent className="p-8 pb-12">
+          {error && (
+            <Alert variant="destructive" className="mb-6 rounded-xl bg-destructive/10 border-destructive/20 text-destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle className="font-bold">Error</AlertTitle>
+              <AlertDescription className="text-xs">{error}</AlertDescription>
+            </Alert>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Email Address</label>
+              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Admin Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input 
                   type="email" 
-                  placeholder="admin@codecastug.com" 
+                  placeholder="info@codecastug.com" 
                   className="h-12 pl-12 rounded-xl bg-secondary/50 border-muted"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -90,6 +118,10 @@ export default function AdminLoginPage() {
               {loading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : "Sign In to Dashboard"}
             </Button>
           </form>
+          
+          <p className="mt-8 text-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-50">
+            Authorized Personnel Only
+          </p>
         </CardContent>
       </Card>
     </div>
