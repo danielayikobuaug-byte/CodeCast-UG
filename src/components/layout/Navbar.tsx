@@ -2,7 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2 } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
