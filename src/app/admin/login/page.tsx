@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, Lock, Mail, Loader2, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2, AlertCircle, Info } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -47,7 +47,18 @@ export default function AdminLoginPage() {
       });
       router.push('/admin');
     } catch (error: any) {
-      const msg = error.message || "Invalid credentials.";
+      console.error("Login error:", error.code);
+      let msg = "Invalid credentials. Please ensure the user is registered in the Firebase Console.";
+      
+      // Handle common Firebase Auth errors specifically
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/invalid-email') {
+        msg = "Authentication failed. Have you created this user in the Firebase Console under Authentication > Users and enabled the Email/Password provider?";
+      } else if (error.code === 'auth/wrong-password') {
+        msg = "Incorrect password. Please try again.";
+      } else if (error.code === 'auth/too-many-requests') {
+        msg = "Access temporarily disabled due to many failed attempts. Please try again later.";
+      }
+      
       setError(msg);
       toast({
         variant: "destructive",
@@ -76,10 +87,18 @@ export default function AdminLoginPage() {
           {error && (
             <Alert variant="destructive" className="mb-6 rounded-xl bg-destructive/10 border-destructive/20 text-destructive">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle className="font-bold">Error</AlertTitle>
-              <AlertDescription className="text-xs">{error}</AlertDescription>
+              <AlertTitle className="font-bold text-xs uppercase tracking-widest">Error</AlertTitle>
+              <AlertDescription className="text-xs font-medium leading-relaxed">{error}</AlertDescription>
             </Alert>
           )}
+
+          <Alert className="mb-6 rounded-xl bg-primary/5 border-primary/20 text-primary">
+            <Info className="h-4 w-4" />
+            <AlertTitle className="font-bold text-xs uppercase tracking-widest">Setup Required</AlertTitle>
+            <AlertDescription className="text-[10px] leading-relaxed">
+              Before signing in, ensure <strong>Email/Password</strong> is enabled in your Firebase Console and the admin users have been manually added to the <strong>Users</strong> list.
+            </AlertDescription>
+          </Alert>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
