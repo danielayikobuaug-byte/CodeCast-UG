@@ -82,22 +82,22 @@
 .marquee-row-left {
   display: flex;
   width: max-content;
-  animation: marquee-left 40s linear infinite;
+  animation: marquee-left 60s linear infinite;
 }
 
 .marquee-row-right {
   display: flex;
   width: max-content;
-  animation: marquee-right 40s linear infinite;
+  animation: marquee-right 60s linear infinite;
 }
 
 @keyframes marquee-left {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-33.33%); }
 }
 
 @keyframes marquee-right {
-  from { transform: translateX(-50%); }
+  from { transform: translateX(-33.33%); }
   to { transform: translateX(0); }
 }
 
