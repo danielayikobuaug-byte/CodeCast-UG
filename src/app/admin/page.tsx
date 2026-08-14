@@ -17,6 +17,7 @@ import {
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, orderBy, limit } from "firebase/firestore";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function AdminOverviewPage() {
   const db = useFirestore();
@@ -85,7 +86,9 @@ export default function AdminOverviewPage() {
               <MessageSquare className="w-5 h-5 text-primary" />
               Recent Inquiries
             </CardTitle>
-            <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none px-3">View All</Badge>
+            <Link href="/admin/messages">
+              <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none px-3 cursor-pointer">View All</Badge>
+            </Link>
           </CardHeader>
           <CardContent className="p-0">
             {messages?.length ? (
@@ -103,9 +106,9 @@ export default function AdminOverviewPage() {
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">
                         {msg.timestamp?.toDate ? msg.timestamp.toDate().toLocaleDateString() : 'Just now'}
                       </span>
-                      <button className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 ml-auto">
+                      <Link href="/admin/messages" className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 ml-auto">
                         Reply <ArrowUpRight className="w-3 h-3" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -126,10 +129,10 @@ export default function AdminOverviewPage() {
               <CardTitle className="text-lg font-bold">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-4">
-              <QuickActionBtn label="Add New Project" icon={<FolderKanban />} />
-              <QuickActionBtn label="Create Blog Post" icon={<Newspaper />} />
-              <QuickActionBtn label="Export Subscribers" icon={<Users />} />
-              <QuickActionBtn label="System Settings" icon={<Settings />} />
+              <QuickActionBtn label="Add New Project" icon={<FolderKanban />} href="/admin/projects" />
+              <QuickActionBtn label="Create Blog Post" icon={<Newspaper />} href="/admin/news" />
+              <QuickActionBtn label="Export Subscribers" icon={<Users />} href="/admin/subscribers" />
+              <QuickActionBtn label="System Settings" icon={<Settings />} href="/admin/assets" />
             </CardContent>
           </Card>
         </div>
@@ -163,9 +166,12 @@ function StatCard({ title, value, icon, trend, positive }: { title: string, valu
   );
 }
 
-function QuickActionBtn({ label, icon }: { label: string, icon: React.ReactNode }) {
+function QuickActionBtn({ label, icon, href }: { label: string, icon: React.ReactNode, href: string }) {
   return (
-    <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-secondary/50 hover:bg-primary hover:text-white transition-all group">
+    <Link 
+      href={href} 
+      className="w-full flex items-center justify-between p-4 rounded-2xl bg-secondary/50 hover:bg-primary hover:text-white transition-all group"
+    >
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center text-primary group-hover:text-primary transition-colors">
           {icon}
@@ -173,6 +179,6 @@ function QuickActionBtn({ label, icon }: { label: string, icon: React.ReactNode 
         <span className="text-sm font-bold">{label}</span>
       </div>
       <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-    </button>
+    </Link>
   );
 }
