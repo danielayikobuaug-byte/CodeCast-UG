@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { BottomNav } from "@/components/layout/BottomNav";
-import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { FirebaseClientProvider } from '@/firebase';
+import { LayoutWrapper } from '@/components/layout/LayoutWrapper';
 
 export const metadata: Metadata = {
   title: 'CodeCast UG LTD | Technology & Entertainment Solutions',
@@ -35,13 +32,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased selection:bg-primary/20">
         <FirebaseClientProvider>
-          <Navbar />
-          <div className="pt-24 lg:pt-[117px] pb-20 lg:pb-0">
+          <LayoutWrapper>
             {children}
-          </div>
-          <Footer />
-          <BottomNav />
-          <NewsletterPopup />
+          </LayoutWrapper>
           <Toaster />
         </FirebaseClientProvider>
       </body>
