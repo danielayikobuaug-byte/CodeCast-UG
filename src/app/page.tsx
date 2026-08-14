@@ -1,9 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Laptop, Smartphone, Settings, Network, PhoneCall, Locate, Tv, Radio, Film, Monitor, Layout, Wrench, ArrowRight, CheckCircle2, Star } from "lucide-react";
+import { 
+  Laptop, 
+  Smartphone, 
+  Settings, 
+  Network, 
+  PhoneCall, 
+  Locate, 
+  Tv, 
+  Radio, 
+  Monitor, 
+  ArrowRight, 
+  CheckCircle2, 
+  Users, 
+  FolderKanban, 
+  Globe, 
+  Calendar 
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -21,7 +38,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://picsum.photos/seed/codecast1/1920/1080"
@@ -35,24 +52,58 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 px-4 py-20">
-          <div className="max-w-3xl flex flex-col gap-6">
-            <Badge variant="outline" className="w-fit text-accent border-accent/60 px-4 py-1 text-sm bg-accent/10">
-              Technology & Digital Excellence
-            </Badge>
-            <h1 className="text-4xl md:text-7xl font-extrabold text-white leading-tight">
-              Code Smart. <br />
-              <span className="text-accent">Stream the World.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-xl">
-              CodeCast UG LTD delivers end-to-end technology solutions from web and mobile products to Smart TV, live streaming and IPTV systems built for your business.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8" asChild>
-                <Link href="/services">Explore Services <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-              <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-full px-12 h-14 text-lg" asChild>
-                <Link href="/contact">Start a Project</Link>
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl flex flex-col gap-6">
+              <Badge variant="outline" className="w-fit text-accent border-accent/60 px-4 py-1 text-sm bg-accent/10">
+                Technology & Digital Excellence
+              </Badge>
+              <h1 className="text-4xl md:text-7xl font-extrabold text-white leading-tight">
+                Code Smart. <br />
+                <span className="text-accent">Stream the World.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 max-w-xl">
+                CodeCast UG LTD delivers end-to-end technology solutions from web and mobile products to Smart TV, live streaming and IPTV systems built for your business.
+              </p>
+              <div className="flex flex-wrap gap-4 mt-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-14 text-lg" asChild>
+                  <Link href="/services">Explore Services <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                </Button>
+                <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-full px-12 h-14 text-lg" asChild>
+                  <Link href="/contact">Start a Project</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Floating Stats Cards */}
+            <div className="hidden lg:grid grid-cols-2 gap-6 items-center">
+              <div className="flex flex-col gap-6">
+                <StatLiquidCard 
+                  icon={<Users className="w-6 h-6" />}
+                  value="165+"
+                  label="Clients Served"
+                  className="animate-float"
+                />
+                <StatLiquidCard 
+                  icon={<Globe className="w-6 h-6" />}
+                  value="9+"
+                  label="Countries Served"
+                  className="animate-float-delayed"
+                />
+              </div>
+              <div className="flex flex-col gap-6 mt-12">
+                <StatLiquidCard 
+                  icon={<FolderKanban className="w-6 h-6" />}
+                  value="126+"
+                  label="Projects Delivered"
+                  className="animate-float-delayed"
+                />
+                <StatLiquidCard 
+                  icon={<Calendar className="w-6 h-6" />}
+                  value="6+"
+                  label="Years of Experience"
+                  className="animate-float"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -226,6 +277,22 @@ export default function Home() {
         </div>
       </section>
     </div>
+  );
+}
+
+function StatLiquidCard({ icon, value, label, className }: { icon: React.ReactNode, value: string, label: string, className?: string }) {
+  return (
+    <Card className={cn("bg-white/10 backdrop-blur-xl border-white/20 text-white rounded-[2rem] shadow-2xl overflow-hidden group hover:bg-white/20 transition-all duration-500", className)}>
+      <CardContent className="p-8">
+        <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition-transform">
+          {icon}
+        </div>
+        <div>
+          <h4 className="text-3xl font-black mb-1">{value}</h4>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/60">{label}</p>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
