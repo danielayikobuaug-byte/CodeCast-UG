@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +27,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ImageShowcase } from "@/components/sections/ImageShowcase";
 
 export default function ServicesPage() {
   return (
@@ -226,6 +226,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Image Showcase */}
+      <ImageShowcase />
+
       {/* Final CTA */}
       <section className="py-24 bg-foreground text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
@@ -236,11 +239,11 @@ export default function ServicesPage() {
               Let's discuss how our comprehensive technology and entertainment solutions can help you achieve your goals and drive growth.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="rounded-full px-12 h-14 text-lg bg-white text-foreground hover:bg-white/90">
-                <ArrowRight className="mr-2 h-5 w-5" /> Get in Touch
+              <Button size="lg" className="rounded-full px-12 h-14 text-lg bg-white text-foreground hover:bg-white/90" asChild>
+                <Link href="/contact"><ArrowRight className="mr-2 h-5 w-5" /> Get in Touch</Link>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-12 h-14 text-lg border-white/20 text-white hover:bg-white/10">
-                <Briefcase className="mr-2 h-5 w-5" /> View Our Work
+              <Button size="lg" variant="outline" className="rounded-full px-12 h-14 text-lg border-white/20 text-white hover:bg-white/10" asChild>
+                <Link href="/projects"><Briefcase className="mr-2 h-5 w-5" /> View Our Work</Link>
               </Button>
             </div>
           </div>

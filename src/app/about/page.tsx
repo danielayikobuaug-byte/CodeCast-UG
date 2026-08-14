@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ImageShowcase } from "@/components/sections/ImageShowcase";
 
 export default function AboutPage() {
   return (
@@ -210,6 +210,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Image Showcase */}
+      <ImageShowcase />
+
       {/* Stats Band */}
       <section className="py-20 bg-foreground text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
@@ -246,8 +249,8 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Let's build your future in technology</h2>
               <p className="text-xl text-white/80 mb-12">Reach out today and tell us what you're trying to achieve. Our team is ready to help you innovate.</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg">
-                  <Phone className="mr-2 h-5 w-5" /> Contact CodeCast UG
+                <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg" asChild>
+                  <Link href="/contact"><Phone className="mr-2 h-5 w-5" /> Contact CodeCast UG</Link>
                 </Button>
               </div>
             </div>
