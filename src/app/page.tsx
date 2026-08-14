@@ -25,6 +25,21 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const categories = [
+    "Software Development", 
+    "Digital Marketing", 
+    "Smart Home Devices", 
+    "Startup MVPS", 
+    "Automated Call Centers", 
+    "Child Monitoring",
+    "Business IPTV",
+    "Custom Web Apps",
+    "Mobile Solutions",
+    "Network Security",
+    "Cloud Architecture",
+    "24/7 Remote Support"
+  ];
+
   return (
     <div className="flex flex-col gap-0">
       {/* Hero Section */}
@@ -53,7 +68,7 @@ export default function Home() {
             <div className="lg:col-span-8 flex flex-col gap-8">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Mobile App Development</span>
+                <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Next-Gen Solutions</span>
               </div>
               
               <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter max-w-2xl">
@@ -70,7 +85,7 @@ export default function Home() {
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-10 h-16 text-lg" asChild>
                   <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 rounded-xl px-12 h-16 text-lg font-bold">
+                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-12 h-16 text-lg font-bold">
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
@@ -97,25 +112,26 @@ export default function Home() {
             {/* Right Stats Stack */}
             <div className="lg:col-span-4 hidden lg:block">
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden divide-y divide-white/10">
-                <StatRow value="150+" label="Projects Delivered" />
-                <StatRow value="98%" label="Client Satisfaction" />
-                <StatRow value="7+" label="Years Experience" />
-                <StatRow value="12+" label="Countries Served" />
+                <StatRow value="165+" label="Clients Served" />
+                <StatRow value="126+" label="Projects Delivered" />
+                <StatRow value="6+" label="Years Experience" />
+                <StatRow value="9+" label="Countries Served" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Category Bar */}
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20">
-          <div className="container overflow-x-auto">
-            <div className="flex items-center justify-between gap-12 py-6 whitespace-nowrap min-w-max">
-              <CategoryItem label="Software Development" active />
-              <CategoryItem label="Digital Marketing" />
-              <CategoryItem label="Smart Home Devices" />
-              <CategoryItem label="Startup MVPS" />
-              <CategoryItem label="Automated Call Centers" />
-              <CategoryItem label="Child Monitoring" />
+        {/* Bottom Category Bar - Sliding Continuous */}
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20 overflow-hidden">
+          <div className="py-6">
+            <div className="announcement-track flex items-center gap-12 whitespace-nowrap">
+               {categories.map((label, idx) => (
+                <CategoryItem key={idx} label={label} active={idx % 4 === 0} />
+               ))}
+               {/* Duplicated for seamless loop */}
+               {categories.map((label, idx) => (
+                <CategoryItem key={`dup-${idx}`} label={label} active={idx % 4 === 0} />
+               ))}
             </div>
           </div>
         </div>
@@ -128,7 +144,6 @@ export default function Home() {
         </div>
         <div className="relative flex overflow-hidden">
           <div className="announcement-track whitespace-nowrap flex items-center gap-16 md:gap-32 px-4 opacity-60">
-             {/* Mock client logos - duplicated for seamless loop */}
              {[1, 2, 3, 4, 5, 6, 7, 8].map((i, idx) => (
               <div key={idx} className="text-foreground font-black text-2xl md:text-3xl italic grayscale shrink-0">
                 CLIENT_{i}
