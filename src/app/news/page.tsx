@@ -1,3 +1,4 @@
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,8 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { 
   ChevronRight, 
   ArrowRight, 
-  Phone, 
-  Mail, 
   Calendar, 
   Tag 
 } from "lucide-react";
@@ -36,7 +35,7 @@ export default function NewsPage() {
     },
     {
       id: 3,
-      category: "Business Strategy",
+      category: "Smart Homes",
       date: "May 14, 2026",
       title: "Why Local SEO Matters For Ugandan Businesses",
       description: "Showing up when nearby customers search online can make a bigger difference than a bigger ad budget. Here's where to start.",
@@ -155,8 +154,9 @@ export default function NewsPage() {
                   type="email" 
                   placeholder="Enter your email address" 
                   className="h-14 rounded-full bg-white text-foreground px-8 border-none"
+                  required
                 />
-                <Button variant="secondary" size="lg" className="h-14 rounded-full px-12 text-lg font-bold">
+                <Button variant="secondary" size="lg" className="h-14 rounded-full px-12 text-lg font-bold" type="submit">
                   Subscribe
                 </Button>
               </form>
@@ -173,8 +173,8 @@ export default function NewsPage() {
             <p className="text-lg text-muted-foreground mb-8">
               Our team is happy to talk through your project, big or small.
             </p>
-            <Button size="lg" className="rounded-full px-12 h-14 text-lg">
-              <Phone className="mr-2 h-5 w-5" /> Contact CodeCast UG LTD
+            <Button size="lg" className="rounded-full px-12 h-14 text-lg" asChild>
+              <Link href="/contact">Contact CodeCast UG LTD</Link>
             </Button>
           </div>
         </div>
