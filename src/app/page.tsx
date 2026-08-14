@@ -13,16 +13,13 @@ import {
   Monitor, 
   ArrowRight, 
   CheckCircle2, 
-  Users, 
-  FolderKanban, 
-  Globe, 
-  Calendar,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { HeroStats } from "@/components/sections/HeroStats";
 
 export default function Home() {
   const categories = [
@@ -43,7 +40,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-0">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] lg:min-h-[750px] flex items-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[70vh] lg:min-h-[650px] flex items-center overflow-hidden bg-foreground">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -62,7 +59,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-transparent" />
         </div>
 
-        <div className="container relative z-10 px-4 pt-24 pb-20 h-full flex flex-col justify-center">
+        <div className="container relative z-10 px-4 pt-16 pb-20 h-full flex flex-col justify-center">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-8 flex flex-col gap-6">
@@ -71,21 +68,21 @@ export default function Home() {
                 <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Next-Gen Solutions</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] tracking-tighter max-w-2xl">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter max-w-2xl">
                 Apps your <br />
                 customers <br />
                 <span className="text-accent">will love to use.</span>
               </h1>
               
-              <p className="text-base md:text-lg text-white/60 max-w-lg font-medium leading-relaxed">
+              <p className="text-sm md:text-base text-white/60 max-w-lg font-medium leading-relaxed">
                 We craft high-performance iOS and Android apps with beautiful interfaces and rock-solid backends, delivered fast.
               </p>
               
               <div className="flex flex-wrap gap-4 mt-2">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-8 h-14 text-base" asChild>
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-8 h-12 text-sm" asChild>
                   <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-10 h-14 text-base font-bold">
+                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-10 h-12 text-sm font-bold">
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
@@ -93,10 +90,10 @@ export default function Home() {
               {/* Slider Controls */}
               <div className="flex items-center gap-6 mt-8">
                 <div className="flex gap-2">
-                  <Button size="icon" variant="outline" className="rounded-full w-10 h-10 border-white/10 text-white/40 hover:text-white">
+                  <Button size="icon" variant="outline" className="rounded-full w-8 h-8 border-white/10 text-white/40 hover:text-white">
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
-                  <Button size="icon" variant="outline" className="rounded-full w-10 h-10 border-white/10 text-white/40 hover:text-white">
+                  <Button size="icon" variant="outline" className="rounded-full w-8 h-8 border-white/10 text-white/40 hover:text-white">
                     <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
@@ -109,21 +106,16 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Stats Stack */}
+            {/* Right Stats Stack - Now using HeroStats Component */}
             <div className="lg:col-span-4 hidden lg:block">
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden divide-y divide-white/10 animate-float">
-                <StatRow value="165+" label="Clients Served" />
-                <StatRow value="126+" label="Projects Delivered" />
-                <StatRow value="6+" label="Years Experience" />
-                <StatRow value="9+" label="Countries Served" />
-              </div>
+              <HeroStats />
             </div>
           </div>
         </div>
 
         {/* Bottom Category Bar - Sliding Continuous */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20 overflow-hidden">
-          <div className="py-5">
+          <div className="py-4">
             <div className="announcement-track flex items-center gap-12 whitespace-nowrap">
                {categories.map((label, idx) => (
                 <CategoryItem key={idx} label={label} active={idx % 4 === 0} />
@@ -303,15 +295,6 @@ export default function Home() {
           </Button>
         </div>
       </section>
-    </div>
-  );
-}
-
-function StatRow({ value, label }: { value: string, label: string }) {
-  return (
-    <div className="p-6 lg:p-8 group hover:bg-white/5 transition-colors">
-      <h4 className="text-3xl lg:text-4xl font-black text-accent mb-1 tracking-tighter">{value}</h4>
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">{label}</p>
     </div>
   );
 }
