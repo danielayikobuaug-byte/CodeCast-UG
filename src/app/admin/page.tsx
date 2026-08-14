@@ -8,11 +8,11 @@ import {
   Users, 
   TrendingUp, 
   ArrowUpRight, 
-  ArrowDownRight,
-  Clock,
-  Newspaper,
-  Settings,
-  ChevronRight
+  ArrowDownRight, 
+  Clock, 
+  Newspaper, 
+  Settings, 
+  ChevronRight 
 } from "lucide-react";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, orderBy, limit } from "firebase/firestore";
@@ -131,7 +131,7 @@ export default function AdminOverviewPage() {
               <QuickActionBtn label="Export Subscribers" icon={<Users />} />
               <QuickActionBtn label="System Settings" icon={<Settings />} />
             </CardContent>
-          </div>
+          </Card>
         </div>
       </div>
     </div>
