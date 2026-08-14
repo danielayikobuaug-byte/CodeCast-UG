@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -29,12 +32,59 @@ import {
   Instagram, 
   MessageSquare,
   ChevronRight,
+  Loader2,
+  CheckCircle
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { StatsBand } from "@/components/sections/StatsBand";
+import { useFirestore, useDoc } from "@/firebase";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { toast } from "@/hooks/use-toast";
+import { sendInquiryEmail } from "@/app/actions/email";
 
 export default function ContactPage() {
+  const db = useFirestore();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  // Get Resend Settings
+  const { data: resendApiKey } = useDoc(doc(db, 'site-assets', 'resend-api-key'));
+  const { data: resendRecipient } = useDoc(doc(db, 'site-assets', 'contact-recipient'));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      service: formData.get('service') as string,
+      message: formData.get('message') as string,
+      timestamp: serverTimestamp(),
+    };
+
+    try {
+      // 1. Save to Firestore
+      const id = Date.now().toString();
+      await setDoc(doc(db, 'messages', id), data);
+
+      // 2. Send Email via Resend
+      if (resendApiKey?.value && resendRecipient?.value) {
+        await sendInquiryEmail(resendApiKey.value, resendRecipient.value, data);
+      }
+
+      setIsSuccess(true);
+      toast({ title: "Message Sent!", description: "We'll get back to you shortly." });
+    } catch (error: any) {
+      toast({ variant: "destructive", title: "Submission Failed", description: error.message });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-0">
       {/* Page Hero */}
@@ -124,59 +174,73 @@ export default function ContactPage() {
             {/* Form Card */}
             <Card className="rounded-3xl border-muted shadow-xl overflow-hidden">
               <CardContent className="p-12">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-2">Send Us A Message</h3>
-                  <p className="text-muted-foreground">Tell us a bit about what you need and we'll follow up promptly.</p>
-                </div>
-
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Full Name *</label>
-                      <Input placeholder="Your full name" className="h-12 rounded-xl bg-secondary/50" required />
+                {isSuccess ? (
+                  <div className="py-20 text-center space-y-6">
+                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle className="w-10 h-10" />
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Email Address *</label>
-                      <Input type="email" placeholder="you@example.com" className="h-12 rounded-xl bg-secondary/50" required />
-                    </div>
+                    <h3 className="text-3xl font-bold">Thank You!</h3>
+                    <p className="text-muted-foreground max-w-sm mx-auto">Your inquiry has been received. Our team will review your project and get back to you within 24 hours.</p>
+                    <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full px-8">Send Another Message</Button>
                   </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Phone Number</label>
-                      <Input placeholder="+256 7XX XXX XXX" className="h-12 rounded-xl bg-secondary/50" />
+                ) : (
+                  <>
+                    <div className="mb-8">
+                      <h3 className="text-2xl font-bold mb-2">Send Us A Message</h3>
+                      <p className="text-muted-foreground">Tell us a bit about what you need and we'll follow up promptly.</p>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Service of Interest</label>
-                      <Select>
-                        <SelectTrigger className="h-12 rounded-xl bg-secondary/50">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="web">Web Design & Development</SelectItem>
-                          <SelectItem value="mobile">Mobile App Development</SelectItem>
-                          <SelectItem value="systems">System Design & Development</SelectItem>
-                          <SelectItem value="smart-homes">Smart Homes & Networking</SelectItem>
-                          <SelectItem value="tv">Smart TV Solutions</SelectItem>
-                          <SelectItem value="iptv">Business IPTV</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Message *</label>
-                    <Textarea placeholder="Tell us about your project or support need..." className="min-h-[150px] rounded-xl bg-secondary/50" required />
-                  </div>
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Full Name *</label>
+                          <Input name="name" placeholder="Your full name" className="h-12 rounded-xl bg-secondary/50" required />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Email Address *</label>
+                          <Input name="email" type="email" placeholder="you@example.com" className="h-12 rounded-xl bg-secondary/50" required />
+                        </div>
+                      </div>
 
-                  <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/20">
-                    <Send className="mr-2 h-5 w-5" /> Send Message
-                  </Button>
-                  
-                  <p className="text-center text-xs text-muted-foreground font-medium uppercase tracking-widest pt-4">
-                    Responses typically within 24 hours.
-                  </p>
-                </form>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Phone Number</label>
+                          <Input name="phone" placeholder="+256 7XX XXX XXX" className="h-12 rounded-xl bg-secondary/50" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Service of Interest</label>
+                          <Select name="service" required>
+                            <SelectTrigger className="h-12 rounded-xl bg-secondary/50">
+                              <SelectValue placeholder="Select a service" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Web Design & Development">Web Design & Development</SelectItem>
+                              <SelectItem value="Mobile App Development">Mobile App Development</SelectItem>
+                              <SelectItem value="System Design & Development">System Design & Development</SelectItem>
+                              <SelectItem value="Smart Homes & Networking">Smart Homes & Networking</SelectItem>
+                              <SelectItem value="Smart TV Solutions">Smart TV Solutions</SelectItem>
+                              <SelectItem value="Business IPTV">Business IPTV</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Message *</label>
+                        <Textarea name="message" placeholder="Tell us about your project or support need..." className="min-h-[150px] rounded-xl bg-secondary/50" required />
+                      </div>
+
+                      <Button type="submit" disabled={isSubmitting} className="w-full h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/20">
+                        {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Send className="mr-2 h-5 w-5" />}
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+                      
+                      <p className="text-center text-xs text-muted-foreground font-medium uppercase tracking-widest pt-4">
+                        Responses typically within 24 hours.
+                      </p>
+                    </form>
+                  </>
+                )}
               </CardContent>
             </Card>
 
