@@ -49,7 +49,6 @@ export function Navbar() {
             </div>
             <div className="flex flex-col leading-none">
               <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
-              <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Technology solutions</span>
             </div>
           </Link>
           
