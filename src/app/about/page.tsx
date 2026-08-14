@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   Award, 
-  Bullseye, 
+  Target, 
   Eye, 
   Gem, 
   Layers, 
@@ -102,7 +102,7 @@ export default function AboutPage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <ValueCard 
-              icon={<Bullseye />} 
+              icon={<Target />} 
               title="Our Mission" 
               desc="To bring reliable software development and next-generation entertainment technology together, giving Ugandan businesses and homes one trusted technology partner."
             />
