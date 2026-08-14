@@ -1,9 +1,11 @@
+
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
 
 export const metadata: Metadata = {
   title: 'CodeCast UG LTD | Technology & Entertainment Solutions',
@@ -33,11 +35,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased selection:bg-primary/20">
         <Navbar />
-        <div className="pt-24 md:pt-32 pb-20 md:pb-0">
+        <div className="pt-24 lg:pt-[117px] pb-20 lg:pb-0">
           {children}
         </div>
         <Footer />
         <BottomNav />
+        <NewsletterPopup />
         <Toaster />
       </body>
     </html>
