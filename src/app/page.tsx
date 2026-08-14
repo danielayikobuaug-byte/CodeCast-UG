@@ -50,7 +50,7 @@ export default function Home() {
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8">
                 Explore Services <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 rounded-full px-8">
+              <Button size="lg" variant="outline" className="text-white border-white/60 hover:bg-white/10 rounded-full px-8">
                 Start a Project
               </Button>
             </div>
