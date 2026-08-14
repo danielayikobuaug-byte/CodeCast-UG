@@ -9,6 +9,13 @@ import { usePathname } from "next/navigation";
 import { useDoc, useFirestore } from "@/firebase";
 import { doc } from "firebase/firestore";
 import Image from "next/image";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -114,30 +121,54 @@ export function Navbar() {
             </Button>
           </div>
 
-          <Button variant="ghost" size="icon" className="lg:hidden rounded-full h-12 w-12" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </Button>
+          {/* Mobile Menu using Sheet for side sliding */}
+          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="lg:hidden rounded-full h-12 w-12">
+                <Menu className="w-6 h-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 border-l-0">
+              <SheetHeader className="p-6 border-b text-left bg-secondary/30">
+                <SheetTitle className="text-xl font-bold tracking-tighter uppercase text-primary">Navigation</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-1 p-4 overflow-y-auto max-h-[calc(100vh-80px)]">
+                <MobileLink href="/" onClick={() => setIsMenuOpen(false)}>Home</MobileLink>
+                <MobileLink href="/about" onClick={() => setIsMenuOpen(false)}>About Us</MobileLink>
+                <MobileLink href="/services" onClick={() => setIsMenuOpen(false)}>All Services</MobileLink>
+                <MobileLink href="/services/tv" onClick={() => setIsMenuOpen(false)}>TV Solutions</MobileLink>
+                <MobileLink href="/projects" onClick={() => setIsMenuOpen(false)}>Our Projects</MobileLink>
+                <MobileLink href="/partnership" onClick={() => setIsMenuOpen(false)}>Partnership</MobileLink>
+                <MobileLink href="/news" onClick={() => setIsMenuOpen(false)}>News & Blog</MobileLink>
+                <MobileLink href="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</MobileLink>
+                
+                <div className="mt-8 p-6 bg-secondary/50 rounded-3xl">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">Direct Support</h4>
+                  <div className="space-y-4">
+                    <a href="tel:+256753998891" className="flex items-center gap-3 text-sm font-bold hover:text-primary transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                        <Phone className="w-4 h-4" />
+                      </div>
+                      +256 753 998 891
+                    </a>
+                    <a href="mailto:info@codecastug.com" className="flex items-center gap-3 text-sm font-bold hover:text-primary transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      info@codecastug.com
+                    </a>
+                  </div>
+                  <Button className="mt-8 w-full py-7 rounded-2xl bg-primary text-lg font-bold shadow-xl shadow-primary/20" asChild>
+                    <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                      <Send className="mr-2 h-5 w-5" /> Get a Quote
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
-
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[1100] bg-white lg:hidden pt-20 overflow-y-auto">
-          <div className="p-6 flex flex-col gap-2">
-            <MobileLink href="/" onClick={() => setIsMenuOpen(false)}>Home</MobileLink>
-            <MobileLink href="/about" onClick={() => setIsMenuOpen(false)}>About Us</MobileLink>
-            <MobileLink href="/projects" onClick={() => setIsMenuOpen(false)}>Projects</MobileLink>
-            <MobileLink href="/partnership" onClick={() => setIsMenuOpen(false)}>Partnership</MobileLink>
-            <MobileLink href="/news" onClick={() => setIsMenuOpen(false)}>News & Blog</MobileLink>
-            <MobileLink href="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</MobileLink>
-            <Button className="mt-8 w-full py-7 rounded-2xl bg-primary text-lg font-bold shadow-xl shadow-primary/20" asChild>
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                <Send className="mr-2 h-5 w-5" /> Get a Quote
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
     </>
   )
 }
@@ -190,7 +221,7 @@ function MobileLink({ href, onClick, children }: { href: string, onClick: () => 
       className="text-lg font-bold p-4 border-b border-gray-50 flex items-center justify-between group"
     >
       {children}
-      <ChevronRight className="h-5 w-5 text-gray-300 group-hover:text-primary" />
+      <ChevronRight className="h-5 w-5 text-gray-300 group-hover:text-primary transition-transform group-hover:translate-x-1" />
     </Link>
   );
 }
