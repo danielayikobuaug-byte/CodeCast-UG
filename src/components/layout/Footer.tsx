@@ -1,3 +1,4 @@
+
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import { Input } from "@/components/ui/input";
 export function Footer() {
   return (
     <footer className="bg-secondary/30 pt-24 pb-12 border-t">
-      <div className="container">
+      <div className="container px-4">
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3">

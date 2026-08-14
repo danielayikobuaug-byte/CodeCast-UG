@@ -23,7 +23,7 @@ export function Navbar() {
     <>
       {/* Top Bar */}
       <div className="hidden lg:block bg-secondary py-2 border-b">
-        <div className="container flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
+        <div className="container px-4 flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> +256 753 998 891</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> info@codecastug.com</span>
@@ -42,13 +42,13 @@ export function Navbar() {
         "fixed top-0 lg:top-[37px] left-0 right-0 z-[1000] transition-all duration-300 border-b",
         isScrolled ? "bg-white/95 backdrop-blur-md h-16 shadow-md" : "bg-white h-20"
       )}>
-        <div className="container h-full flex items-center justify-between gap-4">
+        <div className="container px-4 h-full flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-navy-900 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
               <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-xl tracking-tighter text-navy-900 uppercase">CodeCast UG</span>
+              <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
               <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">Technology solutions</span>
             </div>
           </Link>
@@ -89,8 +89,10 @@ export function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
-            <Button className="rounded-xl bg-primary hover:bg-primary/90 px-6 font-bold shadow-lg shadow-primary/20">
-              <Send className="mr-2 h-4 w-4" /> Get a Quote
+            <Button className="rounded-xl bg-primary hover:bg-primary/90 px-6 font-bold shadow-lg shadow-primary/20" asChild>
+              <Link href="/contact">
+                <Send className="mr-2 h-4 w-4" /> Get a Quote
+              </Link>
             </Button>
           </div>
 
@@ -110,8 +112,10 @@ export function Navbar() {
             <MobileLink href="/partnership" onClick={() => setIsMenuOpen(false)}>Partnership</MobileLink>
             <MobileLink href="/news" onClick={() => setIsMenuOpen(false)}>News & Blog</MobileLink>
             <MobileLink href="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</MobileLink>
-            <Button className="mt-8 w-full py-7 rounded-2xl bg-primary text-lg font-bold shadow-xl shadow-primary/20">
-              <Send className="mr-2 h-5 w-5" /> Get a Quote
+            <Button className="mt-8 w-full py-7 rounded-2xl bg-primary text-lg font-bold shadow-xl shadow-primary/20" asChild>
+              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                <Send className="mr-2 h-5 w-5" /> Get a Quote
+              </Link>
             </Button>
           </div>
         </div>

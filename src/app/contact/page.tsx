@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -30,7 +31,6 @@ import {
   Instagram, 
   MessageSquare,
   ChevronRight,
-  CheckCircle2
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,7 +44,7 @@ export default function ContactPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, var(--primary) 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        <div className="container relative z-10 text-center">
+        <div className="container relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-extrabold text-foreground mb-6">Get In Touch</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Have a project in mind or need support? Our team at Ntinda NSA Mall, Kampala is ready to help.
@@ -59,7 +59,7 @@ export default function ContactPage() {
 
       {/* Contact Grid */}
       <section className="py-24 bg-background">
-        <div className="container">
+        <div className="container px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             
             {/* Info Card */}
@@ -134,11 +134,11 @@ export default function ContactPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Full Name *</label>
-                      <Input placeholder="Your full name" className="h-12 rounded-xl bg-secondary/50" />
+                      <Input placeholder="Your full name" className="h-12 rounded-xl bg-secondary/50" required />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Email Address *</label>
-                      <Input type="email" placeholder="you@example.com" className="h-12 rounded-xl bg-secondary/50" />
+                      <Input type="email" placeholder="you@example.com" className="h-12 rounded-xl bg-secondary/50" required />
                     </div>
                   </div>
 
@@ -167,7 +167,7 @@ export default function ContactPage() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Message *</label>
-                    <Textarea placeholder="Tell us about your project or support need..." className="min-h-[150px] rounded-xl bg-secondary/50" />
+                    <Textarea placeholder="Tell us about your project or support need..." className="min-h-[150px] rounded-xl bg-secondary/50" required />
                   </div>
 
                   <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg shadow-primary/20">
@@ -187,7 +187,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <section className="py-24 bg-secondary/20">
-        <div className="container">
+        <div className="container px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Badge className="mb-4">Find Us</Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Location</h2>
@@ -209,7 +209,7 @@ export default function ContactPage() {
 
       {/* FAQ Section */}
       <section className="py-24 bg-background">
-        <div className="container">
+        <div className="container px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Badge className="mb-4">FAQ</Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h2>
@@ -252,7 +252,7 @@ export default function ContactPage() {
       {/* Stats Band */}
       <section className="py-20 bg-foreground text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
-        <div className="container relative z-10">
+        <div className="container relative z-10 px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">100+</p>
