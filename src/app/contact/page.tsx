@@ -38,8 +38,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { StatsBand } from "@/components/sections/StatsBand";
-import { useFirestore, useDoc } from "@/firebase";
-import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { useFirestore, useDoc, useMemoFirebase } from "@/firebase";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "@/hooks/use-toast";
 import { sendInquiryEmail } from "@/app/actions/email";
 
@@ -48,9 +48,12 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
-  // Get Resend Settings
-  const { data: resendApiKey } = useDoc(doc(db, 'site-assets', 'resend-api-key'));
-  const { data: resendRecipient } = useDoc(doc(db, 'site-assets', 'contact-recipient'));
+  // Memoize document references
+  const resendApiKeyRef = useMemoFirebase(() => doc(db, 'site-assets', 'resend-api-key'), [db]);
+  const resendRecipientRef = useMemoFirebase(() => doc(db, 'site-assets', 'contact-recipient'), [db]);
+
+  const { data: resendApiKey } = useDoc(resendApiKeyRef);
+  const { data: resendRecipient } = useDoc(resendRecipientRef);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,11 +70,9 @@ export default function ContactPage() {
     };
 
     try {
-      // 1. Save to Firestore
       const id = Date.now().toString();
       await setDoc(doc(db, 'messages', id), data);
 
-      // 2. Send Email via Resend
       if (resendApiKey?.value && resendRecipient?.value) {
         await sendInquiryEmail(resendApiKey.value, resendRecipient.value, data);
       }
@@ -180,7 +181,7 @@ export default function ContactPage() {
                       <CheckCircle className="w-10 h-10" />
                     </div>
                     <h3 className="text-3xl font-bold">Thank You!</h3>
-                    <p className="text-muted-foreground max-w-sm mx-auto">Your inquiry has been received. Our team will review your project and get back to you within 24 hours.</p>
+                    <p className="text-muted-foreground max-sm mx-auto">Your inquiry has been received. Our team will review your project and get back to you within 24 hours.</p>
                     <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full px-8">Send Another Message</Button>
                   </div>
                 ) : (

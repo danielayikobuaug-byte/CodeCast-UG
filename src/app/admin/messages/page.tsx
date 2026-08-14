@@ -1,8 +1,8 @@
 'use client';
 
-import { useCollection, useFirestore } from "@/firebase";
-import { collection, query, orderBy, deleteDoc, doc, Firestore } from "firebase/firestore";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { collection, query, orderBy, deleteDoc, doc } from "firebase/firestore";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Trash2, Mail, Phone, Calendar, Loader2 } from "lucide-react";
@@ -12,7 +12,11 @@ import { FirestorePermissionError } from "@/firebase/errors";
 
 export default function AdminMessagesPage() {
   const db = useFirestore();
-  const { data: messages, loading } = useCollection(query(collection(db, 'messages'), orderBy('timestamp', 'desc')));
+  const messagesQuery = useMemoFirebase(() => {
+    return query(collection(db, 'messages'), orderBy('timestamp', 'desc'));
+  }, [db]);
+
+  const { data: messages, loading } = useCollection(messagesQuery);
 
   const handleDelete = (id: string) => {
     const docRef = doc(db, 'messages', id);

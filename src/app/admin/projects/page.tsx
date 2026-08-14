@@ -1,8 +1,7 @@
-
 'use client';
 
 import { useState } from 'react';
-import { useCollection, useFirestore } from '@/firebase';
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, doc, setDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -14,7 +13,11 @@ import { Badge } from '@/components/ui/badge';
 
 export default function AdminProjectsPage() {
   const db = useFirestore();
-  const { data: projects, loading } = useCollection(query(collection(db, 'projects'), orderBy('order', 'desc')));
+  const projectsQuery = useMemoFirebase(() => {
+    return query(collection(db, 'projects'), orderBy('order', 'desc'));
+  }, [db]);
+
+  const { data: projects, loading } = useCollection(projectsQuery);
   const [editing, setEditing] = useState<any>(null);
   const [processing, setProcessing] = useState(false);
 

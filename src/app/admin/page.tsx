@@ -14,17 +14,23 @@ import {
   Settings,
   ChevronRight
 } from "lucide-react";
-import { useCollection, useFirestore } from "@/firebase";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, orderBy, limit } from "firebase/firestore";
 import { cn } from "@/lib/utils";
 
 export default function AdminOverviewPage() {
   const db = useFirestore();
   
-  // Real-time data for stats (simplified)
-  const { data: messages } = useCollection(query(collection(db, 'messages'), orderBy('timestamp', 'desc'), limit(5)));
-  const { data: subscribers } = useCollection(collection(db, 'subscribers'));
-  const { data: projects } = useCollection(collection(db, 'projects'));
+  const messagesQuery = useMemoFirebase(() => {
+    return query(collection(db, 'messages'), orderBy('timestamp', 'desc'), limit(5));
+  }, [db]);
+
+  const subscribersQuery = useMemoFirebase(() => collection(db, 'subscribers'), [db]);
+  const projectsQuery = useMemoFirebase(() => collection(db, 'projects'), [db]);
+
+  const { data: messages } = useCollection(messagesQuery);
+  const { data: subscribers } = useCollection(subscribersQuery);
+  const { data: projects } = useCollection(projectsQuery);
 
   return (
     <div className="space-y-10">
@@ -125,7 +131,7 @@ export default function AdminOverviewPage() {
               <QuickActionBtn label="Export Subscribers" icon={<Users />} />
               <QuickActionBtn label="System Settings" icon={<Settings />} />
             </CardContent>
-          </Card>
+          </div>
         </div>
       </div>
     </div>

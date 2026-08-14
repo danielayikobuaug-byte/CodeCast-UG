@@ -1,19 +1,22 @@
-
 'use client';
 
 import { useState } from 'react';
-import { useCollection, useFirestore } from '@/firebase';
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, doc, setDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, Plus, Trash2, Loader2, GripVertical, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Plus, Trash2, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import Image from 'next/image';
 
 export default function PartnerLogosPage() {
   const db = useFirestore();
-  const { data: logos, loading } = useCollection(query(collection(db, 'client-logos'), orderBy('order', 'asc')));
+  const logosQuery = useMemoFirebase(() => {
+    return query(collection(db, 'client-logos'), orderBy('order', 'asc'));
+  }, [db]);
+
+  const { data: logos, loading } = useCollection(logosQuery);
   const [adding, setAdding] = useState(false);
 
   const handleAddLogo = async (e: React.FormEvent<HTMLFormElement>) => {

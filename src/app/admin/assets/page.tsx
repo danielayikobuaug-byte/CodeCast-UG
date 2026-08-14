@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useCollection, useFirestore } from '@/firebase';
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -20,7 +20,8 @@ const ASSET_KEYS = [
 
 export default function SiteAssetsPage() {
   const db = useFirestore();
-  const { data: assets, loading } = useCollection(collection(db, 'site-assets'));
+  const assetsQuery = useMemoFirebase(() => collection(db, 'site-assets'), [db]);
+  const { data: assets, loading } = useCollection(assetsQuery);
   const [saving, setSaving] = useState<string | null>(null);
 
   const handleUpdateAsset = async (key: string, value: string, type: string) => {
