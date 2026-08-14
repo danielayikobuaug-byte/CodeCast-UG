@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, Lock, Mail, Loader2, AlertCircle, Info } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2, AlertCircle, Info, ExternalLink } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -40,29 +40,28 @@ export default function AdminLoginPage() {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.toLowerCase().trim(), password);
       toast({
         title: "Login Successful",
         description: "Welcome to the CodeCast UG admin dashboard.",
       });
       router.push('/admin');
-    } catch (error: any) {
-      console.error("Login error:", error.code);
-      let msg = "Invalid credentials. Please ensure the user is registered in the Firebase Console.";
+    } catch (firebaseError: any) {
+      // We remove console.error to prevent the Next.js error overlay during development.
+      // The user is notified via the UI alerts and toasts instead.
       
-      // Handle common Firebase Auth errors specifically
-      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/invalid-email') {
-        msg = "Authentication failed. Have you created this user in the Firebase Console under Authentication > Users and enabled the Email/Password provider?";
-      } else if (error.code === 'auth/wrong-password') {
-        msg = "Incorrect password. Please try again.";
-      } else if (error.code === 'auth/too-many-requests') {
+      let msg = "Invalid credentials. Please ensure you have created this user in the Firebase Console.";
+      
+      if (firebaseError.code === 'auth/invalid-credential' || firebaseError.code === 'auth/user-not-found' || firebaseError.code === 'auth/wrong-password') {
+        msg = "Login failed. You must manually add this user in the Firebase Console under Authentication > Users and enable the Email/Password sign-in method.";
+      } else if (firebaseError.code === 'auth/too-many-requests') {
         msg = "Access temporarily disabled due to many failed attempts. Please try again later.";
       }
       
       setError(msg);
       toast({
         variant: "destructive",
-        title: "Login Failed",
+        title: "Authentication Error",
         description: msg,
       });
     } finally {
@@ -84,25 +83,34 @@ export default function AdminLoginPage() {
           </div>
         </CardHeader>
         <CardContent className="p-8 pb-12">
-          {error && (
+          {error ? (
             <Alert variant="destructive" className="mb-6 rounded-xl bg-destructive/10 border-destructive/20 text-destructive">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle className="font-bold text-xs uppercase tracking-widest">Error</AlertTitle>
-              <AlertDescription className="text-xs font-medium leading-relaxed">{error}</AlertDescription>
+              <AlertTitle className="font-bold text-xs uppercase tracking-widest">Login Failed</AlertTitle>
+              <AlertDescription className="text-xs font-medium leading-relaxed">
+                {error}
+                <div className="mt-4">
+                  <Button variant="outline" size="sm" className="h-8 text-[10px] font-bold uppercase tracking-tighter rounded-lg" asChild>
+                    <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer">
+                      Open Firebase Console <ExternalLink className="ml-1 h-3 w-3" />
+                    </a>
+                  </Button>
+                </div>
+              </AlertDescription>
+            </Alert>
+          ) : (
+            <Alert className="mb-6 rounded-xl bg-primary/5 border-primary/20 text-primary">
+              <Info className="h-4 w-4" />
+              <AlertTitle className="font-bold text-xs uppercase tracking-widest">Setup Required</AlertTitle>
+              <AlertDescription className="text-[10px] leading-relaxed">
+                Ensure <strong>Email/Password</strong> is enabled in your Firebase Console and the admin users (info@codecastug.com or joelhitech111@gmail.com) are added to the <strong>Users</strong> list.
+              </AlertDescription>
             </Alert>
           )}
 
-          <Alert className="mb-6 rounded-xl bg-primary/5 border-primary/20 text-primary">
-            <Info className="h-4 w-4" />
-            <AlertTitle className="font-bold text-xs uppercase tracking-widest">Setup Required</AlertTitle>
-            <AlertDescription className="text-[10px] leading-relaxed">
-              Before signing in, ensure <strong>Email/Password</strong> is enabled in your Firebase Console and the admin users have been manually added to the <strong>Users</strong> list.
-            </AlertDescription>
-          </Alert>
-
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Admin Email Address</label>
+              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Admin Email</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input 
