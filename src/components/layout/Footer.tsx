@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
@@ -26,6 +25,7 @@ export function Footer() {
                     alt="CodeCast UG Logo" 
                     fill 
                     className="object-contain object-left" 
+                    unoptimized
                   />
                 </div>
               ) : (

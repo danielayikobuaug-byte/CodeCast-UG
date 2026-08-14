@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -57,6 +56,7 @@ export function Navbar() {
                   fill 
                   className="object-contain object-left" 
                   priority
+                  unoptimized
                 />
               </div>
             ) : (

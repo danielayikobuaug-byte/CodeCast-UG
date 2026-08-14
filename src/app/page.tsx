@@ -135,7 +135,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trusted By Section - Mind about size for mobile */}
+      {/* Trusted By Section - Centered and clean white background per reference */}
       <section className="py-10 lg:py-16 bg-white border-y overflow-hidden">
         <div className="container px-4 mb-6 lg:mb-10">
           <p className="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground">Trusted by leading organizations</p>
@@ -151,9 +151,11 @@ export default function Home() {
                       alt={logo.name} 
                       fill 
                       className="object-contain" 
+                      unoptimized
                     />
                   </div>
                 ))}
+                {/* Duplicate for seamless scroll */}
                 {logos.map((logo: any) => (
                   <div key={`dup-${logo.id}`} className="relative h-8 w-24 md:h-12 md:w-32 shrink-0 transition-transform hover:scale-110">
                     <Image 
@@ -161,6 +163,7 @@ export default function Home() {
                       alt={logo.name} 
                       fill 
                       className="object-contain" 
+                      unoptimized
                     />
                   </div>
                 ))}
