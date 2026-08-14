@@ -24,6 +24,12 @@
       "description": "Sarah N. Avatar",
       "imageUrl": "https://picsum.photos/seed/sn/400/400",
       "imageHint": "professional woman"
+    },
+    {
+      "id": "contact-hero",
+      "description": "Network cabling and server setup",
+      "imageUrl": "https://picsum.photos/seed/network/1200/800",
+      "imageHint": "server network"
     }
   ]
 }
