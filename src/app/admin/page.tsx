@@ -9,11 +9,14 @@ import {
   TrendingUp, 
   ArrowUpRight, 
   ArrowDownRight,
-  Clock
+  Clock,
+  Newspaper,
+  Settings,
+  ChevronRight
 } from "lucide-react";
 import { useCollection, useFirestore } from "@/firebase";
 import { collection, query, orderBy, limit } from "firebase/firestore";
-import { useMemoFirebase } from "@/firebase/use-memo-firebase"; // Assuming we use standard memoized ref
+import { cn } from "@/lib/utils";
 
 export default function AdminOverviewPage() {
   const db = useFirestore();
