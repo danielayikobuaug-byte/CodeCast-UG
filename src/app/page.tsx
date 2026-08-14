@@ -52,8 +52,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-0">
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] lg:min-h-[550px] flex items-center overflow-hidden bg-foreground">
+      {/* Hero Section - Height decreased for mobile */}
+      <section className="relative min-h-[60vh] lg:min-h-[550px] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://picsum.photos/seed/codecast-industrial/1920/1080"
@@ -70,7 +70,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-transparent" />
         </div>
 
-        <div className="container relative z-10 px-4 pt-20 pb-24 h-full flex flex-col justify-center">
+        <div className="container relative z-10 px-4 pt-16 pb-20 lg:pt-20 lg:pb-24 h-full flex flex-col justify-center">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-8 flex flex-col gap-6 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2">
