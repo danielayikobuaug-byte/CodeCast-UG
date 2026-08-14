@@ -1,34 +1,18 @@
-export type EventType = 
-  | 'Emergency' 
-  | 'Traffic' 
-  | 'Power outage' 
-  | 'Event' 
-  | 'Flood' 
-  | 'Crime' 
-  | 'Fuel shortage' 
-  | 'Public services';
+export type ServiceCategory = 'Software' | 'Entertainment' | 'Connectivity';
 
-export interface PulseReport {
+export interface ServiceItem {
   id: string;
-  type: EventType;
+  category: ServiceCategory;
+  title: string;
   description: string;
-  latitude: number;
-  longitude: number;
-  timestamp: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
-  photoUrl?: string;
-  confirmations: number;
-  denials: number;
-  isVerified: boolean;
-  isSuspicious?: boolean;
-  suspicionReason?: string;
+  icon: string;
 }
 
-export interface TrendingTopic {
+export interface ProjectItem {
   id: string;
   title: string;
-  count: number;
-  category: EventType;
+  category: string;
+  description: string;
+  thumbnail: string;
+  client: string;
 }

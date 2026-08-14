@@ -1,17 +1,18 @@
-import type {Metadata, Viewport} from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { BottomNav } from "@/components/layout/BottomNav";
 
 export const metadata: Metadata = {
-  title: 'Street Pulse | Live City Intelligence',
-  description: 'Street Pulse is a live city intelligence platform that shows what is happening around you in real time.',
+  title: 'CodeCast UG LTD | Technology & Entertainment Solutions',
+  description: 'CodeCast UG LTD delivers web & mobile development, custom systems and Smart Homes alongside Smart TV and IPTV solutions in Kampala, Uganda.',
+  manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Street Pulse',
-  },
-  formatDetection: {
-    telephone: false,
+    title: 'CodeCast UG',
   },
 };
 
@@ -20,7 +21,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#501CEB',
+  themeColor: '#0E1D30',
 }
 
 export default function RootLayout({
@@ -30,15 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      </head>
-      <body className="font-body antialiased selection:bg-primary/20">
-        {children}
+      <body className="antialiased selection:bg-primary/20">
+        <Navbar />
+        <div className="pt-24 md:pt-32 pb-20 md:pb-0">
+          {children}
+        </div>
+        <Footer />
+        <BottomNav />
         <Toaster />
       </body>
     </html>
