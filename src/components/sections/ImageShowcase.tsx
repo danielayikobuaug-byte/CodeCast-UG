@@ -18,11 +18,6 @@ export function ImageShowcase() {
 
   return (
     <section className="py-20 bg-secondary/30 overflow-hidden border-t">
-      <div className="container px-4 mb-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-foreground">Our Portfolio in Action</h2>
-        <p className="text-muted-foreground mt-2">A glimpse into the diverse technology and entertainment solutions we deliver.</p>
-      </div>
-
       <div className="flex flex-col gap-8">
         {/* Row 1: Sliding Left */}
         <div className="relative flex">
