@@ -60,6 +60,18 @@
       "description": "Analytics dashboard",
       "imageUrl": "https://picsum.photos/seed/blog5/800/600",
       "imageHint": "data analytics"
+    },
+    {
+      "id": "mobile-showcase",
+      "description": "Modern smartphone displaying app UI",
+      "imageUrl": "https://picsum.photos/seed/mobile-show/800/1000",
+      "imageHint": "smartphone app"
+    },
+    {
+      "id": "mobile-strategy",
+      "description": "Team discussing app strategy on whiteboard",
+      "imageUrl": "https://picsum.photos/seed/mob-strat/800/600",
+      "imageHint": "team strategy"
     }
   ]
 }
