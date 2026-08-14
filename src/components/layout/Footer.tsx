@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 export function Footer() {
   return (
     <footer className="bg-secondary/30 pt-24 pb-12 border-t">
-      <div className="container px-4">
+      <div className="container">
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3">
@@ -40,11 +40,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-6">Our Services</h4>
             <ul className="flex flex-col gap-3">
-              <FooterLink href="#">Web Development</FooterLink>
-              <FooterLink href="#">Mobile App Design</FooterLink>
-              <FooterLink href="#">Smart TV Solutions</FooterLink>
-              <FooterLink href="#">Live Streaming</FooterLink>
-              <FooterLink href="#">Business IPTV</FooterLink>
+              <FooterLink href="/services/software/web">Web Development</FooterLink>
+              <FooterLink href="/services/software/mobile">Mobile App Design</FooterLink>
+              <FooterLink href="/services/tv/smarttv">Smart TV Solutions</FooterLink>
+              <FooterLink href="/services/tv/streaming">Live Streaming</FooterLink>
+              <FooterLink href="/services/tv/iptv">Business IPTV</FooterLink>
             </ul>
           </div>
 
@@ -59,7 +59,7 @@ export function Footer() {
             </div>
             <div className="mt-8 space-y-4">
               <ContactItem icon={<Phone />} text="+256 753 998 891" />
-              <ContactItem icon={<Mail />} text="infor@codecastug.com" />
+              <ContactItem icon={<Mail />} text="info@codecastug.com" />
               <ContactItem icon={<MapPin />} text="Ntinda NSA Mall, Kampala" />
             </div>
           </div>

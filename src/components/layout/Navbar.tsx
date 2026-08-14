@@ -23,10 +23,10 @@ export function Navbar() {
     <>
       {/* Top Bar */}
       <div className="hidden lg:block bg-secondary py-2 border-b">
-        <div className="container px-4 flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
+        <div className="container flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> +256 753 998 891</span>
-            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> infor@codecastug.com</span>
+            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> info@codecastug.com</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><MapPin className="w-3 h-3 text-primary" /> Ntinda NSA Mall, Kampala</span>
           </div>
           <div className="flex items-center gap-4">
@@ -42,7 +42,7 @@ export function Navbar() {
         "fixed top-0 lg:top-[37px] left-0 right-0 z-[1000] transition-all duration-300 border-b",
         isScrolled ? "bg-white/95 backdrop-blur-md h-16 shadow-md" : "bg-white h-20"
       )}>
-        <div className="container h-full px-4 flex items-center justify-between gap-4">
+        <div className="container h-full flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
             <div className="w-10 h-10 bg-navy-900 rounded-xl flex items-center justify-center">
               <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
