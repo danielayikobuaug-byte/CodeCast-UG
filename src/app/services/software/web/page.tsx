@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { 
   Globe, 
-  PenRuler, 
+  PencilRuler, 
   Code, 
   Smartphone, 
   ShoppingCart, 
@@ -54,7 +54,7 @@ export default function WebDesignPage() {
           <p className="text-xl text-muted-foreground max-w-3xl mb-12">From responsive design to complex e-commerce platforms, we build web experiences that convert. Our team uses cutting-edge technologies to ensure your online presence is powerful and secure.</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <FeatureItem icon={<PenRuler />} title="Custom Design" desc="Bespoke website designs tailored to your brand identity and user needs." />
+            <FeatureItem icon={<PencilRuler />} title="Custom Design" desc="Bespoke website designs tailored to your brand identity and user needs." />
             <FeatureItem icon={<Code />} title="Full Stack Development" desc="Front-end and back-end development using modern technologies." />
             <FeatureItem icon={<Smartphone />} title="Responsive Design" desc="Websites that work perfectly on all devices, from desktops to mobile phones." />
             <FeatureItem icon={<ShoppingCart />} title="E-Commerce Solutions" desc="Complete online store setup with secure payment gateways." />
