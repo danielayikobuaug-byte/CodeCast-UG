@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-0">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[85vh] lg:min-h-[750px] flex items-center overflow-hidden bg-foreground">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -62,42 +62,42 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/60 to-transparent" />
         </div>
 
-        <div className="container relative z-10 px-4 pt-32 pb-24 h-full flex flex-col justify-center">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="container relative z-10 px-4 pt-24 pb-20 h-full flex flex-col justify-center">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-8 flex flex-col gap-8">
+            <div className="lg:col-span-8 flex flex-col gap-6">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Next-Gen Solutions</span>
               </div>
               
-              <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter max-w-2xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] tracking-tighter max-w-2xl">
                 Apps your <br />
                 customers <br />
                 <span className="text-accent">will love to use.</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-white/60 max-w-lg font-medium leading-relaxed">
+              <p className="text-base md:text-lg text-white/60 max-w-lg font-medium leading-relaxed">
                 We craft high-performance iOS and Android apps with beautiful interfaces and rock-solid backends, delivered fast.
               </p>
               
-              <div className="flex flex-wrap gap-4 mt-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-10 h-16 text-lg" asChild>
-                  <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-foreground font-black rounded-xl px-8 h-14 text-base" asChild>
+                  <Link href="/projects">See Our Work <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
-                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-12 h-16 text-lg font-bold">
+                <Button size="lg" variant="outline" className="text-white border-white/40 hover:bg-white/10 rounded-xl px-10 h-14 text-base font-bold">
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
 
               {/* Slider Controls */}
-              <div className="flex items-center gap-6 mt-12">
+              <div className="flex items-center gap-6 mt-8">
                 <div className="flex gap-2">
-                  <Button size="icon" variant="outline" className="rounded-full w-12 h-12 border-white/10 text-white/40 hover:text-white">
-                    <ChevronLeft className="w-5 h-5" />
+                  <Button size="icon" variant="outline" className="rounded-full w-10 h-10 border-white/10 text-white/40 hover:text-white">
+                    <ChevronLeft className="w-4 h-4" />
                   </Button>
-                  <Button size="icon" variant="outline" className="rounded-full w-12 h-12 border-white/10 text-white/40 hover:text-white">
-                    <ChevronRight className="w-5 h-5" />
+                  <Button size="icon" variant="outline" className="rounded-full w-10 h-10 border-white/10 text-white/40 hover:text-white">
+                    <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
                 <div className="flex items-center gap-4">
@@ -111,7 +111,7 @@ export default function Home() {
 
             {/* Right Stats Stack */}
             <div className="lg:col-span-4 hidden lg:block">
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden divide-y divide-white/10">
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden divide-y divide-white/10 animate-float">
                 <StatRow value="165+" label="Clients Served" />
                 <StatRow value="126+" label="Projects Delivered" />
                 <StatRow value="6+" label="Years Experience" />
@@ -123,7 +123,7 @@ export default function Home() {
 
         {/* Bottom Category Bar - Sliding Continuous */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-foreground/50 backdrop-blur-sm z-20 overflow-hidden">
-          <div className="py-6">
+          <div className="py-5">
             <div className="announcement-track flex items-center gap-12 whitespace-nowrap">
                {categories.map((label, idx) => (
                 <CategoryItem key={idx} label={label} active={idx % 4 === 0} />
@@ -163,7 +163,7 @@ export default function Home() {
         <div className="container px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Badge className="mb-4">Our Expertise</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Software & Systems</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Software & Systems</h2>
             <p className="text-muted-foreground text-lg">From your first line of code to complex network solutions, we cover every layer of your technology stack.</p>
           </div>
 
@@ -208,7 +208,7 @@ export default function Home() {
 
           <div className="text-center max-w-3xl mx-auto mt-24 mb-16">
             <Badge variant="outline" className="mb-4 border-primary text-primary">Entertainment</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Smart TV & IPTV</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Smart TV & IPTV</h2>
             <p className="text-muted-foreground text-lg">Innovative entertainment technology for homes and businesses across Uganda.</p>
           </div>
 
@@ -273,7 +273,7 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col gap-8">
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">Built On Trust, Delivered With Precision</h2>
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight text-foreground">Built On Trust, Delivered With Precision</h2>
               <div className="space-y-6">
                 <FeatureItem 
                   title="Experienced Team" 
@@ -309,8 +309,8 @@ export default function Home() {
 
 function StatRow({ value, label }: { value: string, label: string }) {
   return (
-    <div className="p-8 group hover:bg-white/5 transition-colors">
-      <h4 className="text-4xl font-black text-accent mb-1 tracking-tighter">{value}</h4>
+    <div className="p-6 lg:p-8 group hover:bg-white/5 transition-colors">
+      <h4 className="text-3xl lg:text-4xl font-black text-accent mb-1 tracking-tighter">{value}</h4>
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">{label}</p>
     </div>
   );
@@ -337,7 +337,7 @@ function ServiceCard({ icon, title, desc, href }: { icon: React.ReactNode, title
         <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
+        <h3 className="text-xl font-bold mb-3 text-foreground">{title}</h3>
         <p className="text-muted-foreground text-sm leading-relaxed mb-6">{desc}</p>
         <Link href={href} className="inline-flex items-center text-primary font-bold text-sm">
           Learn more <ArrowRight className="ml-2 h-4 w-4" />
@@ -354,7 +354,7 @@ function FeatureItem({ title, desc }: { title: string, desc: string }) {
         <CheckCircle2 className="h-6 w-6 text-primary" />
       </div>
       <div>
-        <h4 className="text-lg font-bold mb-1">{title}</h4>
+        <h4 className="text-lg font-bold mb-1 text-foreground">{title}</h4>
         <p className="text-muted-foreground">{desc}</p>
       </div>
     </div>
