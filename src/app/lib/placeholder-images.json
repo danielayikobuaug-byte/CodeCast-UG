@@ -30,6 +30,36 @@
       "description": "Network cabling and server setup",
       "imageUrl": "https://picsum.photos/seed/network/1200/800",
       "imageHint": "server network"
+    },
+    {
+      "id": "blog-1",
+      "description": "Coding desk at night",
+      "imageUrl": "https://picsum.photos/seed/blog1/800/600",
+      "imageHint": "coding workspace"
+    },
+    {
+      "id": "blog-2",
+      "description": "Business presentation",
+      "imageUrl": "https://picsum.photos/seed/blog2/800/600",
+      "imageHint": "business meeting"
+    },
+    {
+      "id": "blog-3",
+      "description": "Network cabling",
+      "imageUrl": "https://picsum.photos/seed/blog3/800/600",
+      "imageHint": "network cables"
+    },
+    {
+      "id": "blog-4",
+      "description": "Mobile app UI/UX",
+      "imageUrl": "https://picsum.photos/seed/blog4/800/600",
+      "imageHint": "mobile interface"
+    },
+    {
+      "id": "blog-5",
+      "description": "Analytics dashboard",
+      "imageUrl": "https://picsum.photos/seed/blog5/800/600",
+      "imageHint": "data analytics"
     }
   ]
 }
