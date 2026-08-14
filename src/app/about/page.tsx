@@ -84,8 +84,8 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <Button size="lg" className="w-fit rounded-full px-8 h-14 text-lg">
-                <Handshake className="mr-2 h-5 w-5" /> Work With Us
+              <Button size="lg" className="w-fit rounded-full px-8 h-14 text-lg" asChild>
+                <Link href="/contact"><Handshake className="mr-2 h-5 w-5" /> Work With Us</Link>
               </Button>
             </div>
           </div>
@@ -210,9 +210,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Image Showcase */}
-      <ImageShowcase />
-
       {/* Stats Band */}
       <section className="py-20 bg-foreground text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
@@ -249,7 +246,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Let's build your future in technology</h2>
               <p className="text-xl text-white/80 mb-12">Reach out today and tell us what you're trying to achieve. Our team is ready to help you innovate.</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg" asChild>
+                <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg border-white/20" asChild>
                   <Link href="/contact"><Phone className="mr-2 h-5 w-5" /> Contact CodeCast UG</Link>
                 </Button>
               </div>
@@ -257,6 +254,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Image Showcase - Placed above the footer */}
+      <ImageShowcase />
     </div>
   );
 }

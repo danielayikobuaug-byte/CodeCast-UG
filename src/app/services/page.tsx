@@ -226,9 +226,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Image Showcase */}
-      <ImageShowcase />
-
       {/* Final CTA */}
       <section className="py-24 bg-foreground text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
@@ -242,13 +239,16 @@ export default function ServicesPage() {
               <Button size="lg" className="rounded-full px-12 h-14 text-lg bg-white text-foreground hover:bg-white/90" asChild>
                 <Link href="/contact"><ArrowRight className="mr-2 h-5 w-5" /> Get in Touch</Link>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-12 h-14 text-lg border-white/60 text-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="rounded-full px-12 h-14 text-lg border-white/20 text-white hover:bg-white/10" asChild>
                 <Link href="/projects"><Briefcase className="mr-2 h-5 w-5" /> View Our Work</Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Image Showcase - Placed above the footer */}
+      <ImageShowcase />
     </div>
   );
 }

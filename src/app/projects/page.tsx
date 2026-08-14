@@ -118,9 +118,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Image Showcase */}
-      <ImageShowcase />
-
       {/* Stats Section */}
       <StatsCarousel />
 
@@ -131,13 +128,16 @@ export default function ProjectsPage() {
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">Have a project in mind?</h2>
               <p className="text-xl text-white/80 mb-12">Let's talk about what you're trying to build.</p>
-              <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg font-bold" asChild>
+              <Button size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg font-bold border-white/20" asChild>
                 <Link href="/contact"><Phone className="mr-2 h-5 w-5" /> Contact CodeCast UG LTD</Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Image Showcase - Placed above the footer */}
+      <ImageShowcase />
     </div>
   );
 }
