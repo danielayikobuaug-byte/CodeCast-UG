@@ -1,5 +1,3 @@
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -34,6 +32,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { StatsBand } from "@/components/sections/StatsBand";
 
 export default function ContactPage() {
   return (
@@ -249,30 +248,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Stats Band */}
-      <section className="py-20 bg-foreground text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/10" />
-        <div className="container relative z-10 px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">100+</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/60">Projects Delivered</p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">50+</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/60">Happy Clients</p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">12</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/60">Core Services</p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-6xl font-extrabold text-accent mb-2">24/7</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/60">Expert Support</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Auto-counting StatsBand */}
+      <StatsBand />
     </div>
   );
 }

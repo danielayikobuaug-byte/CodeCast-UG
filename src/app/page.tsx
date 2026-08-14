@@ -22,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { HeroStats } from "@/components/sections/HeroStats";
+import { StatsBand } from "@/components/sections/StatsBand";
 import { useCollection, useFirestore } from "@/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
 import { useMemoFirebase } from "@/firebase/use-memo-firebase";
@@ -253,28 +254,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-foreground text-white">
-        <div className="container px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">100+</p>
-              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Projects Delivered</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">50+</p>
-              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Happy Clients</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">12</p>
-              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Core Services</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-5xl font-bold text-accent mb-2">24/7</p>
-              <p className="text-xs font-medium uppercase tracking-wider text-white/60">Support</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Stats Band with Auto-Counting logic */}
+      <StatsBand className="py-16" />
 
       <section className="py-20 bg-secondary/20">
         <div className="container px-4">
@@ -357,7 +338,7 @@ function FeatureItem({ title, desc }: { title: string, desc: string }) {
   return (
     <div className="flex gap-4">
       <div className="mt-1">
-        <CheckCircle2 className="h-5 w-5 text-primary" />
+        CheckCircle2 && <CheckCircle2 className="h-5 w-5 text-primary" />
       </div>
       <div>
         <h4 className="text-base font-bold mb-1 text-foreground">{title}</h4>
