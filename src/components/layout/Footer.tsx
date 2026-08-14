@@ -4,13 +4,14 @@ import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useDoc, useFirestore } from "@/firebase";
+import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
 import { doc } from "firebase/firestore";
 import Image from "next/image";
 
 export function Footer() {
   const db = useFirestore();
-  const { data: logoAsset } = useDoc(doc(db, 'site-assets', 'main-logo'));
+  const logoRef = useMemoFirebase(() => doc(db, 'site-assets', 'main-logo'), [db]);
+  const { data: logoAsset } = useDoc(logoRef);
 
   return (
     <footer className="bg-secondary/30 pt-24 pb-12 border-t">

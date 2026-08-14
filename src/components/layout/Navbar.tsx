@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { useDoc, useFirestore } from "@/firebase";
+import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
 import { doc } from "firebase/firestore";
 import Image from "next/image";
 import {
@@ -22,7 +22,8 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const db = useFirestore();
-  const { data: logoAsset } = useDoc(doc(db, 'site-assets', 'main-logo'));
+  const logoRef = useMemoFirebase(() => doc(db, 'site-assets', 'main-logo'), [db]);
+  const { data: logoAsset } = useDoc(logoRef);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
