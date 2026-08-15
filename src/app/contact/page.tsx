@@ -48,7 +48,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
-  // Memoize document references
+  // Memoize document references for site assets (email settings)
   const resendApiKeyRef = useMemoFirebase(() => doc(db, 'site-assets', 'resend-api-key'), [db]);
   const resendRecipientRef = useMemoFirebase(() => doc(db, 'site-assets', 'contact-recipient'), [db]);
 
@@ -70,17 +70,34 @@ export default function ContactPage() {
     };
 
     try {
+      // Save message to Firestore for Admin Dashboard retrieval
       const id = Date.now().toString();
       await setDoc(doc(db, 'messages', id), data);
 
+      // Optionally send email if Resend is configured in Admin Settings
       if (resendApiKey?.value && resendRecipient?.value) {
-        await sendInquiryEmail(resendApiKey.value, resendRecipient.value, data);
+        try {
+          await sendInquiryEmail(resendApiKey.value, resendRecipient.value, data);
+        } catch (emailErr) {
+          // Email failure is secondary to database logging
+          console.warn("Email notification failed, but message was logged to DB.");
+        }
       }
 
       setIsSuccess(true);
-      toast({ title: "Message Sent!", description: "We'll get back to you shortly." });
+      toast({ 
+        title: "Message Sent!", 
+        description: "Your inquiry has been received. We'll get back to you shortly." 
+      });
+      
+      // Reset form scroll
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error: any) {
-      toast({ variant: "destructive", title: "Submission Failed", description: error.message });
+      toast({ 
+        variant: "destructive", 
+        title: "Submission Failed", 
+        description: error.message || "Please try again later or call us directly." 
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -182,7 +199,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-3xl font-bold">Thank You!</h3>
                     <p className="text-muted-foreground max-sm mx-auto">Your inquiry has been received. Our team will review your project and get back to you within 24 hours.</p>
-                    <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full px-8">Send Another Message</Button>
+                    <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full px-8 h-12">Send Another Message</Button>
                   </div>
                 ) : (
                   <>
