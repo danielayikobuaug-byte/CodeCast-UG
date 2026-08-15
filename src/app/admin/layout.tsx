@@ -71,8 +71,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-lg tracking-tighter text-foreground uppercase">Admin</span>
-              <span className="text-[10px] font-bold text-primary tracking-widest uppercase">Dashboard</span>
+              <span className="font-bold text-lg tracking-tighter text-foreground uppercase">CodeCast UG</span>
+              <span className="text-[10px] font-bold text-primary tracking-widest uppercase">Admin Dashboard</span>
             </div>
           </div>
 

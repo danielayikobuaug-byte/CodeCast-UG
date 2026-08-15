@@ -55,7 +55,7 @@ export default function Home() {
       <section className="relative min-h-[50vh] lg:min-h-[550px] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://picsum.photos/seed/codecast-industrial/1920/1080"
+            src="https://i.pinimg.com/1200x/4b/82/59/4b8259c6c5b1bdb40d67bf4fd038f472.jpg"
             alt="Hero Background"
             fill
             className="object-cover opacity-40 hero-zoom brightness-[0.4]"
@@ -78,7 +78,9 @@ export default function Home() {
               </div>
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter max-w-2xl mx-auto lg:mx-0">
-                Apps your <br className="hidden sm:block" />
+                Tv
+               & Software 
+                <br className="hidden sm:block" />
                 customers <br className="hidden sm:block" />
                 <span className="text-accent">will love to use.</span>
               </h1>
@@ -263,7 +265,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-[400px] md:h-[550px] rounded-[2.5rem] overflow-hidden shadow-2xl">
               <Image 
-                src="https://picsum.photos/seed/codecast2/800/1000" 
+                src="https://i.pinimg.com/1200x/72/8d/b7/728db7ceee8a7b232dc9e558943fabe9.jpg" 
                 alt="Working at CodeCast" 
                 fill 
                 className="object-cover"

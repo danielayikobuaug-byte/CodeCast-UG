@@ -51,7 +51,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl group">
               <Image 
-                src="https://picsum.photos/seed/codecast-story/800/600" 
+                src="https://i.pinimg.com/736x/d3/52/57/d352573864c1a7bd725ba623580702e6.jpg" 
                 alt="Our Story" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -161,7 +161,7 @@ export default function AboutPage() {
 
             <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl bg-foreground">
               <Image 
-                src="https://picsum.photos/seed/codecast-dev/800/1000" 
+                src="https://i.pinimg.com/736x/b3/17/7a/b3177a05ed0e1bedf50350a5feb5f61a.jpg" 
                 alt="Technology Excellence" 
                 fill 
                 className="object-cover opacity-80"

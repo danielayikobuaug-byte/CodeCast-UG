@@ -24,7 +24,7 @@ export default function SmartTVPage() {
       <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://picsum.photos/seed/smarttv/1920/1080"
+            src="https://i.pinimg.com/1200x/e3/43/c7/e343c78323922768bd9ffce9cbd903c2.jpg"
             alt="Smart TV Solutions"
             fill
             className="object-cover opacity-40 hero-zoom"
