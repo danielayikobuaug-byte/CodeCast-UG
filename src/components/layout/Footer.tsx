@@ -1,17 +1,44 @@
 "use client"
 
-import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
-import { doc } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import Image from "next/image";
+import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
 
 export function Footer() {
   const db = useFirestore();
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const logoRef = useMemoFirebase(() => doc(db, 'site-assets', 'main-logo'), [db]);
   const { data: logoAsset } = useDoc(logoRef);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setLoading(true);
+    try {
+      const id = Date.now().toString();
+      await setDoc(doc(db, 'subscribers', id), {
+        id,
+        email,
+        timestamp: serverTimestamp(),
+        source: 'footer'
+      });
+      toast({ title: "Subscribed!", description: "You've been added to our mailing list." });
+      setEmail("");
+    } catch (error: any) {
+      toast({ variant: 'destructive', title: "Subscription Failed", description: error.message });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <footer className="bg-secondary/30 pt-24 pb-12 border-t">
@@ -74,12 +101,19 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-6">Newsletter</h4>
             <p className="text-sm text-muted-foreground mb-4">Subscribe for tech tips and project updates.</p>
-            <div className="flex gap-2">
-              <Input placeholder="Email address" className="rounded-full bg-white border-muted" />
-              <Button size="icon" className="rounded-full flex-shrink-0 bg-primary">
-                <ArrowRight className="w-4 h-4" />
+            <form onSubmit={handleSubscribe} className="flex gap-2">
+              <Input 
+                placeholder="Email address" 
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="rounded-full bg-white border-muted" 
+              />
+              <Button size="icon" disabled={loading} className="rounded-full flex-shrink-0 bg-primary">
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
               </Button>
-            </div>
+            </form>
             <div className="mt-8 space-y-4">
               <ContactItem icon={<Phone />} text="+256 753 998 891" />
               <ContactItem icon={<Mail />} text="info@codecastug.com" />

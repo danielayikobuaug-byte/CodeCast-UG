@@ -10,7 +10,8 @@ import {
   Calendar, 
   Tag,
   Loader2,
-  Newspaper 
+  Newspaper,
+  CheckCircle
 } from "lucide-react";
 import {
   Dialog,
@@ -21,7 +22,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
-import { collection, query, orderBy } from "firebase/firestore";
+import { collection, query, orderBy, setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { toast } from "@/hooks/use-toast";
 
 const STATIC_POSTS = [
   {
@@ -82,6 +84,9 @@ const STATIC_POSTS = [
 
 export default function NewsPage() {
   const [selectedPost, setSelectedPost] = useState<any>(null);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  
   const db = useFirestore();
   const newsQuery = useMemoFirebase(() => {
     return query(collection(db, 'blog-posts'), orderBy('date', 'desc'));
@@ -89,9 +94,30 @@ export default function NewsPage() {
 
   const { data: dbPosts, loading } = useCollection(newsQuery);
 
-  // Combine database posts with static posts
-  // Firestore posts should come first as they are likely newer
   const allPosts = dbPosts ? [...dbPosts, ...STATIC_POSTS] : STATIC_POSTS;
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubscribing(true);
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+
+    try {
+      const id = Date.now().toString();
+      await setDoc(doc(db, 'subscribers', id), {
+        id,
+        email,
+        timestamp: serverTimestamp(),
+        source: 'news_page'
+      });
+      setSubscribed(true);
+      toast({ title: "Welcome!", description: "You've been successfully subscribed." });
+    } catch (error: any) {
+      toast({ variant: 'destructive', title: "Error", description: error.message });
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-0">
@@ -186,17 +212,30 @@ export default function NewsPage() {
               <p className="text-lg text-white/80 mb-10">
                 Get occasional tips and updates from CodeCast UG LTD straight to your inbox.
               </p>
-              <form className="flex flex-col sm:row gap-4" onSubmit={(e) => e.preventDefault()}>
-                <input 
-                  type="email" 
-                  placeholder="Enter your email address" 
-                  className="h-14 w-full rounded-full bg-white text-foreground px-8 border-none focus:outline-none"
-                  required
-                />
-                <Button variant="secondary" size="lg" className="h-14 rounded-full px-12 text-lg font-bold" type="submit">
-                  Subscribe
-                </Button>
-              </form>
+              
+              {subscribed ? (
+                <div className="flex flex-col items-center gap-4 animate-in zoom-in-95 duration-300">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-10 h-10 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold">You're on the list!</h4>
+                  <p className="text-white/60">Thank you for subscribing to our newsletter.</p>
+                </div>
+              ) : (
+                <form className="flex flex-col sm:flex-row gap-4" onSubmit={handleNewsletterSubmit}>
+                  <input 
+                    name="email"
+                    type="email" 
+                    placeholder="Enter your email address" 
+                    className="h-14 w-full rounded-full bg-white text-foreground px-8 border-none focus:outline-none"
+                    required
+                  />
+                  <Button variant="secondary" size="lg" disabled={isSubscribing} className="h-14 rounded-full px-12 text-lg font-bold" type="submit">
+                    {isSubscribing ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
+                    Subscribe
+                  </Button>
+                </form>
+              )}
             </div>
           </div>
         </div>
