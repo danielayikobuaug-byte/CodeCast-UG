@@ -52,6 +52,6 @@ export const INITIAL_REPORTS: PulseReport[] = [
     confirmations: 20,
     denials: 0,
     isVerified: true,
-    photoUrl: 'https://picsum.photos/seed/football/600/400'
+    photoUrl: 'https://i.pinimg.com/736x/d3/52/57/d352573864c1a7bd725ba623580702e6.jpg'
   }
 ];

@@ -14,7 +14,7 @@ export default function PartnershipPage() {
         <div className="container px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold text-navy-900 mb-6">Partner With CodeCast UG LTD</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Grow together — combine your reach with our technology and entertainment expertise to deliver more value to shared clients.
+            Grow together : combine your reach with our technology and entertainment expertise to deliver more value to shared clients.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
             <Link href="/" className="text-primary hover:underline">Home</Link>
@@ -29,7 +29,7 @@ export default function PartnershipPage() {
         <div className="container px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl bg-primary text-white p-12 flex flex-col justify-center">
-              <div className="absolute inset-0 opacity-20 bg-[url('https://picsum.photos/seed/partnership-bg/800/600')] bg-cover bg-center" />
+              <div className="absolute inset-0 opacity-20 bg-[url('https://i.pinimg.com/1200x/65/cf/90/65cf90be1f0a7027061c582d2eaf978c.jpg')] bg-cover bg-center" />
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold mb-6">Better Together</h2>
                 <p className="text-lg text-white/90">

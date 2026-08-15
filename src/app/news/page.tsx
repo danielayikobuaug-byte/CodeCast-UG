@@ -33,7 +33,7 @@ const STATIC_POSTS = [
     title: "5 Signs Your Business Website Needs A Redesign",
     description: "Slow load times, an outdated look and poor mobile support could be costing you customers. Here's how to tell it's time for a revamp.",
     content: "A website is often the first point of contact between a business and its potential customers. If your site looks like it belongs in the early 2000s, it sends a message that your company isn't keeping up with the times. Slow performance, lack of mobile responsiveness, and difficult navigation are all critical warning signs. In today's digital landscape, user experience is paramount. A redesign isn't just about aesthetics; it's about optimizing for conversion, speed, and cross-device compatibility. We recommend evaluating your site every 2-3 years to ensure it still serves your business goals effectively.",
-    imageUrl: "https://picsum.photos/seed/blog1/800/600",
+    imageUrl: "https://i.pinimg.com/736x/5f/4f/dd/5f4fdd4af6c39fc9a57c7819ac2b5214.jpg",
   },
   {
     id: "s2",
@@ -42,7 +42,7 @@ const STATIC_POSTS = [
     title: "CodeCast UG LTD Expands Support Team To Serve More Clients",
     description: "We've grown our technical support team to keep response times fast as we take on more projects across Uganda.",
     content: "As we continue to grow and partner with more organizations across East Africa, our commitment to reliability remains our top priority. We are excited to announce the expansion of our dedicated technical support team. By bringing in more certified network engineers and software specialists, we are ensuring that our clients receive the prompt, high-quality assistance they've come to expect from CodeCast UG LTD. This expansion allows us to offer 24/7 monitoring for our enterprise IPTV and system clients, guaranteeing minimal downtime and maximum efficiency.",
-    imageUrl: "https://picsum.photos/seed/codecast-story/800/600",
+    imageUrl: "https://i.pinimg.com/736x/04/64/cb/0464cbe21d79549b308dbe9a640d32b6.jpg",
   },
   {
     id: "s3",
@@ -51,7 +51,7 @@ const STATIC_POSTS = [
     title: "Why Local SEO Matters For Ugandan Businesses",
     description: "Showing up when nearby customers search online can make a bigger difference than a bigger ad budget. Here's where to start.",
     content: "For businesses in Kampala and across Uganda, being visible in local search results is crucial. Local SEO ensures that when someone searches for 'Smart TV setup near me' or 'Software developers in Ntinda', your business is at the top of the list. This involves optimizing your Google Business Profile, managing local reviews, and ensuring your contact information is consistent across the web. At CodeCast, we help our clients integrate local SEO best practices into their web development projects from day one, helping them reach the customers who are literally just around the corner.",
-    imageUrl: "https://picsum.photos/seed/blog2/800/600",
+    imageUrl: "https://i.pinimg.com/736x/f0/45/ff/f045ffc98e4a04965043d05ca236d48a.jpg",
   },
   {
     id: "s4",
@@ -60,7 +60,7 @@ const STATIC_POSTS = [
     title: "Structured Cabling: Why It's Worth Doing Right",
     description: "A messy, ad-hoc network setup causes downtime down the line. We break down what proper structured cabling actually involves.",
     content: "Structured cabling is the invisible backbone of any modern office. Many businesses fall into the trap of adding cables incrementally, leading to a 'spaghetti' mess that is impossible to maintain. A professional structured cabling setup provides a standardized approach to network infrastructure, allowing for easier troubleshooting, better scalability, and significantly reduced downtime. Whether it's Cat6, Cat6a, or fiber optics, doing it right the first time saves money and headaches in the long run. Our team specializes in designing and implementing these robust physical networks.",
-    imageUrl: "https://picsum.photos/seed/blog3/800/600",
+    imageUrl: "https://i.pinimg.com/1200x/90/75/9e/90759e4db48d069f6428ea4f13a567ca.jpg",
   },
   {
     id: "s5",
@@ -69,7 +69,7 @@ const STATIC_POSTS = [
     title: "Native vs. Cross-Platform: Which App Approach Fits Your Business?",
     description: "We weigh the trade-offs between native and cross-platform development to help you choose the right path for your next app.",
     content: "Choosing between native (Swift/Kotlin) and cross-platform (React Native/Flutter) is a critical decision for any mobile project. Native apps offer the highest performance and deepest integration with hardware, but require maintaining two separate codebases. Cross-platform development allows for faster time-to-market and lower development costs by using a single codebase for both iOS and Android. For most business applications, cross-platform is now the preferred choice due to its maturity and efficiency. We work with you to analyze your specific requirements and choose the framework that best balances performance, cost, and long-term maintainability.",
-    imageUrl: "https://picsum.photos/seed/blog4/800/600",
+    imageUrl: "https://i.pinimg.com/1200x/e1/50/3b/e1503b511ba4e2c90c25228631fa6f1d.jpg",
   },
   {
     id: "s6",
@@ -78,7 +78,7 @@ const STATIC_POSTS = [
     title: "How GPS Tracking Devices Are Giving Parents Peace Of Mind",
     description: "A look at how schools and families are using real-time tracking and geofencing to keep children safer on daily commutes.",
     content: "Safety is a primary concern for every parent and school administrator. Our GPS-based child tracking solutions provide real-time location data, geofencing alerts, and historical route playback. By integrating these hardware devices with a custom-built software dashboard, we empower parents to know exactly where their children are during their school commute. Schools also benefit from optimized bus routing and automated arrival notifications. It's a prime example of how simple, reliable technology can solve complex real-world challenges and provide invaluable peace of mind.",
-    imageUrl: "https://picsum.photos/seed/blog5/800/600",
+    imageUrl: "https://i.pinimg.com/736x/f6/48/de/f648de251da1485fd4c956240f00f058.jpg",
   }
 ];
 
