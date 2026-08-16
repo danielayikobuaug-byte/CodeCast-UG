@@ -164,8 +164,8 @@ export default function ContactPage() {
                   />
                   <ContactItem 
                     icon={<FileText />} 
-                    title="TIN" 
-                    desc="1017321312" 
+                    title="Ugcode" 
+                    desc="256" 
                   />
                   <ContactItem 
                     icon={<Clock />} 
