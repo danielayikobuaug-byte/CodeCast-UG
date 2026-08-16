@@ -18,7 +18,7 @@ const ASSET_KEYS = [
   { key: 'contact-recipient', label: 'Notification Recipient', description: 'Email where inquiries are sent', category: 'Email', type: 'text' },
 ];
 
-export function SiteAssetsPage() {
+function SiteAssetsPage() {
   const db = useFirestore();
   const assetsQuery = useMemoFirebase(() => collection(db, 'site-assets'), [db]);
   const { data: assets, loading } = useCollection(assetsQuery);
