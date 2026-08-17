@@ -57,26 +57,26 @@ export function Navbar() {
         <div className="container px-4 h-full flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
             {logoAsset?.value ? (
-              <div className="relative h-10 w-32">
-                <Image 
-                  src={logoAsset.value} 
-                  alt="CodeCast UG Logo" 
-                  fill 
-                  className="object-contain object-left" 
+              <div className="relative h-10 w-10 shrink-0">
+                <Image
+                  src={logoAsset.value}
+                  alt="CodeCast UG Logo"
+                  fill
+                  className="object-contain"
                   priority
                   unoptimized
                 />
               </div>
             ) : (
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
-                </div>
-                <div className="flex flex-col leading-none">
-                  <span className="font-bold text-xl tracking-tighter text-foreground uppercase">CodeCast UG</span>
-                </div>
+              <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center shrink-0">
+                <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
               </div>
             )}
+            <div className="flex flex-col leading-none">
+              <span className="font-bold text-xl tracking-tighter text-foreground">
+                CodeCast<span className="ml-0.5 px-1.5 py-0.5 rounded-md bg-green-100 text-green-700">UG</span>
+              </span>
+            </div>
           </Link>
           
           <div className="hidden lg:flex flex-1 justify-center gap-1">
