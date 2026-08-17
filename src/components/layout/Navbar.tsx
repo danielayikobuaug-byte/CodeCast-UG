@@ -73,8 +73,8 @@ export function Navbar() {
               </div>
             )}
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-xl tracking-tighter text-foreground">
-                CodeCast<span className="ml-0.5 px-1.5 py-0.5 rounded-md bg-green-100 text-green-700">UG</span>
+              <span className="font-extrabold tracking-tighter text-foreground">
+                <span className="text-2xl">CodeCast</span><span className="ml-1.5 px-1.5 py-0.5 rounded-md bg-[#08AFCB] text-white text-xl">UG</span>
               </span>
             </div>
           </Link>

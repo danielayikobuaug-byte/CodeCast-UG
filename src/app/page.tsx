@@ -74,7 +74,7 @@ export default function Home() {
             <div className="lg:col-span-8 flex flex-col gap-6 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Next-Gen Solutions</span>
+                <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">NextGen Solutions</span>
               </div>
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter max-w-2xl mx-auto lg:mx-0">

@@ -62,7 +62,7 @@ export function Footer() {
                 </div>
               )}
               <span className="font-bold text-xl tracking-tighter text-foreground">
-                CodeCast<span className="ml-0.5 px-1.5 py-0.5 rounded-md bg-green-100 text-green-700">UG</span>
+                CodeCast<span className="ml-0.5 px-1.5 py-0.5 rounded-md bg-[#08AFCB] text-white">UG</span>
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
