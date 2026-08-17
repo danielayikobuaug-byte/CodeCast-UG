@@ -55,7 +55,7 @@ export default function Home() {
       <section className="relative min-h-[50vh] lg:min-h-[550px] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://i.pinimg.com/1200x/4b/82/59/4b8259c6c5b1bdb40d67bf4fd038f472.jpg"
+            src="https://i.pinimg.com/736x/aa/09/f8/aa09f816a9c246321dfe55e7fb2e7981.jpg"
             alt="Hero Background"
             fill
             className="object-cover opacity-40 hero-zoom brightness-[0.4]"
