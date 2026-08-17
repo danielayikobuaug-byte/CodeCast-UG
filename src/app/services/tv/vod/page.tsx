@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -15,6 +16,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Video on Demand (VOD) Platforms',
+  description: 'Launch and manage your own VOD content library with secure access, content management and monetization options.',
+  alternates: { canonical: '/services/tv/vod' },
+};
 
 export default function VODPage() {
   return (

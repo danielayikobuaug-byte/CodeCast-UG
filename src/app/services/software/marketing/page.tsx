@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Lightbulb, 
@@ -12,6 +13,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Smart Homes & Networking',
+  description: 'Intelligent home and office automation, structured cabling and secure WiFi networking for modern living and working.',
+  alternates: { canonical: '/services/software/marketing' },
+};
 
 export default function SmartHomesPage() {
   return (

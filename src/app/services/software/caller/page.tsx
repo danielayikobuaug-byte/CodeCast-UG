@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Bell, 
@@ -12,6 +13,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Automated Caller Systems',
+  description: 'Smart IVR and auto-dialer platforms to reach your customers at scale with intelligent automated calling solutions.',
+  alternates: { canonical: '/services/software/caller' },
+};
 
 export default function CallerSystemsPage() {
   return (

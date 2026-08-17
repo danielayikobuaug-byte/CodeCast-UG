@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Smartphone, 
@@ -12,6 +13,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Mobile App Development',
+  description: 'Native and cross-platform iOS and Android apps that drive engagement and deliver exceptional user experiences.',
+  alternates: { canonical: '/services/software/mobile' },
+};
 
 export default function MobileAppsPage() {
   return (

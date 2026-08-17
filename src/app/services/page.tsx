@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +29,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { ImageShowcase } from "@/components/sections/ImageShowcase";
+
+export const metadata: Metadata = {
+  title: 'Services',
+  description: 'Complete technology and entertainment solutions for your business — web & mobile development, custom systems, Smart TV and IPTV, all under one roof.',
+  alternates: { canonical: '/services' },
+};
 
 export default function ServicesPage() {
   return (

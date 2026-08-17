@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -14,6 +15,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Business IPTV Solutions',
+  description: 'Enterprise-grade IPTV for hotels, hospitals and offices — internal communication and digital signage built for Ugandan businesses.',
+  alternates: { canonical: '/services/tv/iptv' },
+};
 
 export default function IPTVPage() {
   return (

@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -15,6 +16,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Live Streaming Services',
+  description: 'Professional live streaming infrastructure for broadcasts and global events, built for reliable, high-quality audience reach.',
+  alternates: { canonical: '/services/tv/streaming' },
+};
 
 export default function StreamingPage() {
   return (

@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Locate, 
@@ -12,6 +13,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Child Monitoring & Tracking',
+  description: 'Real-time GPS tracking and comprehensive family security solutions to keep your children safe.',
+  alternates: { canonical: '/services/software/tracking' },
+};
 
 export default function ChildTrackingPage() {
   return (

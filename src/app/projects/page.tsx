@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -71,6 +72,12 @@ const PROJECTS = [
     image: "https://picsum.photos/seed/p9/800/600"
   }
 ];
+
+export const metadata: Metadata = {
+  title: 'Our Projects',
+  description: "A look at the technology and entertainment work we've delivered for businesses, schools and organisations across Uganda.",
+  alternates: { canonical: '/projects' },
+};
 
 export default function ProjectsPage() {
   return (

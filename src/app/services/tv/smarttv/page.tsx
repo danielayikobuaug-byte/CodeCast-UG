@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Smart TV Solutions',
+  description: 'Custom Smart TV apps and platforms for Samsung, LG, Sony and Android TV — state-of-the-art visuals and seamless performance.',
+  alternates: { canonical: '/services/tv/smarttv' },
+};
 
 export default function SmartTVPage() {
   return (

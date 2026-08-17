@@ -1,10 +1,17 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Handshake, Users, Wrench, TrendingUp, Cpu, Store, Building2, ChevronRight, Phone } from "lucide-react";
 import Link from "next/link";
 import { StatsCarousel } from "@/components/sections/StatsCarousel";
+
+export const metadata: Metadata = {
+  title: 'Partnership',
+  description: 'Grow together — combine your reach with our technology and entertainment expertise to deliver more value to shared clients.',
+  alternates: { canonical: '/partnership' },
+};
 
 export default function PartnershipPage() {
   return (

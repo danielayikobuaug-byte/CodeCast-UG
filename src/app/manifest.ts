@@ -13,12 +13,12 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: 'https://i.pinimg.com/736x/53/cc/92/53cc92958e2c64b52694d8818de161e3.jpg',
         sizes: '192x192',
-        type: 'image/png',
+        type: 'image/jpeg',
       },
       {
         src: 'https://i.pinimg.com/736x/53/cc/92/53cc92958e2c64b52694d8818de161e3.jpg',
         sizes: '512x512',
-        type: 'image/png',
+        type: 'image/jpeg',
       },
     ],
   }

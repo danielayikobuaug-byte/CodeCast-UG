@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'TV & Entertainment Solutions',
+  description: 'Professional streaming, IPTV, and TV solutions for every audience — next-generation entertainment technology for Ugandan businesses and homes.',
+  alternates: { canonical: '/services/tv' },
+};
 
 export default function TVServicesHubPage() {
   return (

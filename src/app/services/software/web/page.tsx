@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Globe, 
@@ -14,6 +15,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Web Design & Development',
+  description: 'Custom responsive websites and web applications built with modern frameworks to engage visitors and drive business results.',
+  alternates: { canonical: '/services/software/web' },
+};
 
 export default function WebDesignPage() {
   return (

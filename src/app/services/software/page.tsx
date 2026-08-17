@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'Software & Development Services',
+  description: 'Custom software solutions tailored to your business — high-performance web apps, mobile development, systems and intelligent automation.',
+  alternates: { canonical: '/services/software' },
+};
 
 export default function SoftwareServicesHubPage() {
   return (

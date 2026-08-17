@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { 
   Code, 
@@ -12,6 +13,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'System Design & Development',
+  description: 'Scalable backend systems, powerful APIs and enterprise database solutions built to move your business forward.',
+  alternates: { canonical: '/services/software/systems' },
+};
 
 export default function SystemsPage() {
   return (

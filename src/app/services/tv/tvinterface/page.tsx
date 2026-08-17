@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -14,6 +15,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'TV Interface Design',
+  description: 'Intuitive, beautiful user interface design crafted specifically for the big screen experience.',
+  alternates: { canonical: '/services/tv/tvinterface' },
+};
 
 export default function TVInterfacePage() {
   return (

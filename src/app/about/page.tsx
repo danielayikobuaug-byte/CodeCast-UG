@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +23,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ImageShowcase } from "@/components/sections/ImageShowcase";
 import { StatsBand } from "@/components/sections/StatsBand";
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'A Kampala-based technology and entertainment company bringing software development together with Smart TV and IPTV solutions.',
+  alternates: { canonical: '/about' },
+};
 
 export default function AboutPage() {
   return (
