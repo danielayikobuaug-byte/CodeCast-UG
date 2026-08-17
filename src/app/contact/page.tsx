@@ -132,7 +132,7 @@ export default function ContactPage() {
             {/* Info Card */}
             <div className="relative rounded-3xl overflow-hidden bg-foreground text-white p-12 min-h-[600px] flex flex-col justify-center shadow-2xl">
               <Image 
-                src="https://picsum.photos/seed/network/1200/800" 
+                src="https://i.pinimg.com/1200x/60/57/25/60572567cd1862b68e657f9ed3efa2a7.jpg" 
                 alt="Contact Information" 
                 fill 
                 className="object-cover opacity-20"
