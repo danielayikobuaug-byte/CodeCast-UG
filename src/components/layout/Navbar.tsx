@@ -90,23 +90,29 @@ export function Navbar() {
                 { label: "Mission & Vision", href: "/about#mission-vision" }
               ]} 
             />
-            <NavDropdown 
-              label="TV Solutions" 
+            <NavDropdown
+              label="TV Solutions"
               active={pathname.includes("/tv")}
               items={[
                 { label: "Smart TV", href: "/services/tv/smarttv" },
                 { label: "Live Streaming", href: "/services/tv/streaming" },
-                { label: "IPTV", href: "/services/tv/iptv" }
-              ]} 
+                { label: "Video on Demand", href: "/services/tv/vod" },
+                { label: "Business IPTV", href: "/services/tv/iptv" },
+                { label: "TV Interfaces", href: "/services/tv/tvinterface" },
+                { label: "Installation & Support", href: "/services/tv/installation" }
+              ]}
             />
-            <NavDropdown 
-              label="Services" 
-              active={pathname.includes("/services")}
+            <NavDropdown
+              label="Services"
+              active={pathname.includes("/services/software")}
               items={[
                 { label: "Web Design", href: "/services/software/web" },
                 { label: "Mobile Apps", href: "/services/software/mobile" },
-                { label: "Smart Homes", href: "/services/software/marketing" }
-              ]} 
+                { label: "System Design", href: "/services/software/systems" },
+                { label: "Smart Homes & Networking", href: "/services/software/marketing" },
+                { label: "Automated Caller Systems", href: "/services/software/caller" },
+                { label: "Child Monitoring & Tracking", href: "/services/software/tracking" }
+              ]}
             />
             <NavLink href="/projects" active={pathname === "/projects"}>Projects</NavLink>
             <NavLink href="/partnership" active={pathname === "/partnership"}>Partnership</NavLink>
@@ -198,12 +204,12 @@ function NavDropdown({ label, items, active }: { label: string, items: {label: s
         {label} <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
       </button>
       <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-        <div className="bg-white border border-muted rounded-2xl shadow-2xl w-56 p-3 overflow-hidden">
+        <div className="bg-white border border-muted rounded-2xl shadow-2xl w-64 p-3">
           {items.map((item) => (
-            <Link 
-              key={item.label} 
-              href={item.href} 
-              className="block px-4 py-3 text-[13px] font-bold text-gray-600 hover:bg-secondary hover:text-primary rounded-xl transition-all"
+            <Link
+              key={item.label}
+              href={item.href}
+              className="block px-4 py-3 text-[13px] font-bold text-gray-600 hover:bg-secondary hover:text-primary rounded-xl transition-all leading-snug"
             >
               {item.label}
             </Link>
