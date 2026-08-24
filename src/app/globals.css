@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 214 55% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 55% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 55% 12%;
+    --primary: 193 79% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 40% 96%;
+    --secondary-foreground: 193 79% 32%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 193 59% 56%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 193 79% 32%;
+    --radius: 0.75rem;
+
+    /* Analytics chart palette (validated categorical order — see dataviz
+       skill: worst adjacent CVD ΔE 9.1, worst adjacent normal-vision ΔE 19.6) */
+    --chart-1: 213 68% 50%;
+    --chart-2: 17 82% 56%;
+    --chart-3: 159 73% 40%;
+    --chart-4: 41 100% 46%;
+    --chart-5: 337 70% 70%;
+
+    /* Status palette (fixed — never used for series identity) */
+    --status-good: 120 86% 34%;
+    --status-warning: 41 96% 54%;
+    --status-critical: 0 61% 52%;
+  }
+
+  .dark {
+    --background: 214 55% 5%;
+    --foreground: 210 40% 98%;
+    --card: 214 55% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 214 55% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 193 79% 45%;
+    --primary-foreground: 214 55% 5%;
+    --secondary: 214 32% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 214 32% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 193 59% 56%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 20%;
+    --input: 214 32% 20%;
+    --ring: 193 79% 45%;
+
+    --chart-1: 213 77% 56%;
+    --chart-2: 17 70% 50%;
+    --chart-3: 159 73% 36%;
+    --chart-4: 40 100% 39%;
+    --chart-5: 338 61% 58%;
+
+    --status-good: 120 66% 44%;
+    --status-warning: 41 96% 54%;
+    --status-critical: 0 71% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hero Section Marquee (Faster) */
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: hero-scroll 35s linear infinite;
+}
+
+@keyframes hero-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Trusted By Marquee (Slower & Distinct) */
+.trusted-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: trusted-scroll 55s linear infinite;
+}
+
+@keyframes trusted-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Hero Zoom Effect */
+.hero-zoom {
+  animation: heroZoom 15s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+/* Image Showcase Marquee Animations */
+.marquee-row-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 60s linear infinite;
+}
+
+.marquee-row-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 60s linear infinite;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.33%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-33.33%); }
+  to { transform: translateX(0); }
+}
+
+.marquee-row:hover {
+  animation-play-state: paused;
+}
