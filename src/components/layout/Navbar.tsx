@@ -55,28 +55,16 @@ export function Navbar() {
         isScrolled ? "bg-white/95 backdrop-blur-md h-16 shadow-md" : "bg-white h-20"
       )}>
         <div className="container px-4 h-full flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3">
-            {logoAsset?.value ? (
-              <div className="relative h-10 w-10 shrink-0">
-                <Image
-                  src={logoAsset.value}
-                  alt="CodeCast UG Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                  unoptimized
-                />
-              </div>
-            ) : (
-              <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center shrink-0">
-                <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
-              </div>
-            )}
-            <div className="flex flex-col leading-none">
-              <span className="font-extrabold tracking-tighter text-foreground">
-                <span className="text-2xl">CodeCast</span><span className="ml-1.5 px-1.5 py-0.5 rounded-md bg-[#08AFCB] text-white text-xl">UG</span>
-              </span>
-            </div>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src={logoAsset?.value || "/logo.png"}
+              alt="CodeCast UG Logo"
+              width={1628}
+              height={252}
+              className="h-8 lg:h-10 w-auto object-contain"
+              priority
+              unoptimized
+            />
           </Link>
           
           <div className="hidden lg:flex flex-1 justify-center gap-1">
