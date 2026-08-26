@@ -82,11 +82,11 @@ export default function Home() {
                & Software 
                 <br className="hidden sm:block" />
                 customers <br className="hidden sm:block" />
-                <span className="text-accent">will love to use.</span>
+                <span className="text-accent">will love to use </span>
               </h1>
               
               <p className="text-sm md:text-base text-white/60 max-w-md mx-auto lg:mx-0 font-medium leading-relaxed">
-                We craft high-performance iOS and Android apps with beautiful interfaces and rock-solid backends, delivered fast.
+                We craft high performance iOS and Android apps with beautiful interfaces and rock solid backends, delivered fast.
               </p>
               
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-2">
@@ -137,32 +137,32 @@ export default function Home() {
       </section>
 
       {/* Trusted By Section */}
-      <section className="py-10 lg:py-16 bg-white border-y overflow-hidden">
-        <div className="container px-4 mb-6 lg:mb-10">
+      <section className="py-6 lg:py-12 bg-white border-y overflow-hidden">
+        <div className="container px-4 mb-4 lg:mb-8">
           <p className="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground">Trusted by leading organizations</p>
         </div>
         <div className="relative flex overflow-hidden">
-          <div className="trusted-marquee-track whitespace-nowrap flex items-center gap-12 md:gap-32 px-4">
+          <div className="trusted-marquee-track whitespace-nowrap flex items-center gap-8 md:gap-32 px-4">
             {logos && logos.length > 0 ? (
               <>
                 {logos.map((logo: any) => (
-                  <div key={logo.id} className="relative h-8 w-24 md:h-12 md:w-32 shrink-0 transition-transform hover:scale-110">
-                    <Image 
-                      src={logo.imageUrl} 
-                      alt={logo.name} 
-                      fill 
-                      className="object-contain" 
+                  <div key={logo.id} className="relative h-6 w-16 md:h-12 md:w-32 shrink-0 transition-transform hover:scale-110">
+                    <Image
+                      src={logo.imageUrl}
+                      alt={logo.name}
+                      fill
+                      className="object-contain"
                       unoptimized
                     />
                   </div>
                 ))}
                 {logos.map((logo: any) => (
-                  <div key={`dup-${logo.id}`} className="relative h-8 w-24 md:h-12 md:w-32 shrink-0 transition-transform hover:scale-110">
-                    <Image 
-                      src={logo.imageUrl} 
-                      alt={logo.name} 
-                      fill 
-                      className="object-contain" 
+                  <div key={`dup-${logo.id}`} className="relative h-6 w-16 md:h-12 md:w-32 shrink-0 transition-transform hover:scale-110">
+                    <Image
+                      src={logo.imageUrl}
+                      alt={logo.name}
+                      fill
+                      className="object-contain"
                       unoptimized
                     />
                   </div>
@@ -170,7 +170,7 @@ export default function Home() {
               </>
             ) : (
               [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={i} className="text-foreground font-black text-xl md:text-3xl italic grayscale opacity-20 shrink-0 uppercase tracking-tighter mx-8">
+                <div key={i} className="text-foreground font-black text-lg md:text-3xl italic grayscale opacity-20 shrink-0 uppercase tracking-tighter mx-6 md:mx-8">
                   Partner_{i}
                 </div>
               ))
@@ -180,9 +180,9 @@ export default function Home() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background">
         <div className="container px-4">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-10 md:mb-20">
             <Badge className="mb-4">Our Expertise</Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Software & Systems</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">From your first line of code to complex network solutions, we cover every layer of your technology stack.</p>
@@ -227,7 +227,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="text-center max-w-3xl mx-auto mt-24 mb-16">
+          <div className="text-center max-w-3xl mx-auto mt-12 mb-8 md:mt-24 md:mb-16">
             <Badge variant="outline" className="mb-4 border-primary text-primary">Entertainment</Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Smart TV & IPTV</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">Innovative entertainment technology for homes and businesses across Uganda.</p>
@@ -259,7 +259,7 @@ export default function Home() {
       {/* Stats Band */}
       <StatsBand className="py-24" />
 
-      {/* Why Choose Section */}
+      {/* Why Choose Section */} 
       <section className="py-24 bg-secondary/20">
         <div className="container px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -316,7 +316,7 @@ export default function Home() {
 function CategoryItem({ label, active }: { label: string, active?: boolean }) {
   return (
     <div className="flex items-center gap-3">
-      <div className={cn("w-2 h-2 rounded-full", active ? "bg-accent" : "bg-white/20")} />
+      <div className="w-2 h-2 rounded-full bg-accent" />
       <span className={cn(
         "text-[10px] font-bold uppercase tracking-widest transition-colors",
         active ? "text-white" : "text-white/40"

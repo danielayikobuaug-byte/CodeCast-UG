@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2, ChevronRight, Contact } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -37,6 +37,8 @@ export function Navbar() {
       <div className="hidden lg:block bg-secondary py-2 border-b">
         <div className="container px-4 flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
           <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Contact className="w-3 h-3 text-primary" /> Daniel Ayikobua</span>
+          
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> +256 753 998 891</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> info@codecastug.com</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><MapPin className="w-3 h-3 text-primary" /> Ntinda NSA Mall, Kampala</span>
