@@ -153,8 +153,8 @@ export default function ContactPage() {
                   <ContactItem 
                     icon={<Phone />} 
                     title="Call Us" 
-                    desc="+256 753 998 891" 
-                    href="tel:+256753998891"
+                    desc="0201000421" 
+                    href="tel:0201000421"
                   />
                   <ContactItem 
                     icon={<Mail />} 
@@ -164,8 +164,8 @@ export default function ContactPage() {
                   />
                   <ContactItem 
                     icon={<FileText />} 
-                    title="Ugcode" 
-                    desc="256" 
+                    title="Airtel Mearchant" 
+                    desc="4427334" 
                   />
                   <ContactItem 
                     icon={<Clock />} 
