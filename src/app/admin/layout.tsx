@@ -19,7 +19,6 @@ import {
   BarChart3
 } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { signOut } from 'firebase/auth';
@@ -69,17 +68,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside className="w-full lg:w-72 bg-white border-r border-muted lg:fixed lg:inset-y-0 z-50 overflow-y-auto">
         <div className="p-8 flex flex-col h-full">
-          <div className="flex flex-col gap-1 mb-10">
-            <Image
-              src="/logo.png"
-              alt="CodeCast UG Logo"
-              width={1628}
-              height={252}
-              className="h-9 w-auto object-contain"
-              priority
-              unoptimized
-            />
-            <span className="text-[10px] font-bold text-primary tracking-widest uppercase ml-1">Admin Dashboard</span>
+          <div className="flex items-center gap-3 mb-10">
+            <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
+              <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="font-bold text-lg tracking-tighter text-foreground uppercase">CodeCast UG</span>
+              <span className="text-[10px] font-bold text-primary tracking-widest uppercase">Admin Dashboard</span>
+            </div>
           </div>
 
           <nav className="flex-1 space-y-1">

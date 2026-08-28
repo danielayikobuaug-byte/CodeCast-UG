@@ -45,15 +45,25 @@ export function Footer() {
       <div className="container px-4">
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center shrink-0">
-              <Image
-                src={logoAsset?.value || "/logo.png"}
-                alt="CodeCast UG Logo"
-                width={1628}
-                height={252}
-                className="h-9 w-auto object-contain"
-                unoptimized
-              />
+            <Link href="/" className="flex items-center gap-3">
+              {logoAsset?.value ? (
+                <div className="relative h-10 w-10 shrink-0">
+                  <Image
+                    src={logoAsset.value}
+                    alt="CodeCast UG Logo"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              ) : (
+                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
+                </div>
+              )}
+              <span className="font-bold text-xl tracking-tighter text-foreground">
+                CodeCast<span className="ml-0.5 px-1.5 py-0.5 rounded-md bg-[#08AFCB] text-white">UG</span>
+              </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Technology and entertainment solutions provider based in Kampala, Uganda. We code smart and stream the world.

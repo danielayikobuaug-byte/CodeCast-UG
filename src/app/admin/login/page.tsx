@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -71,16 +70,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center p-4 bg-secondary/20 gap-8">
-      <Image
-        src="/logo.png"
-        alt="CodeCast UG Logo"
-        width={1628}
-        height={252}
-        className="h-10 w-auto object-contain"
-        priority
-        unoptimized
-      />
+    <div className="min-h-[80vh] flex items-center justify-center p-4 bg-secondary/20">
       <Card className="w-full max-w-md rounded-3xl shadow-2xl border-muted overflow-hidden">
         <div className="h-2 bg-primary" />
         <CardHeader className="text-center space-y-4 pt-10">
