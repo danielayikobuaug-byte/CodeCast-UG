@@ -105,7 +105,7 @@ export function Footer() {
               </Button>
             </form>
             <div className="mt-8 space-y-4">
-              <ContactItem icon={<Phone />} text="+256 753 998 891" />
+              <ContactItem icon={<Phone />} text="0201000421" />
               <ContactItem icon={<Mail />} text="info@codecastug.com" />
               <ContactItem icon={<MapPin />} text="Ntinda NSA Mall, Kampala" />
             </div>

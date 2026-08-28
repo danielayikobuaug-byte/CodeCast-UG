@@ -39,7 +39,7 @@ export function Navbar() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Contact className="w-3 h-3 text-primary" /> Daniel Ayikobua</span>
           
-            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> +256 753 998 891</span>
+            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> 0201000421</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> info@codecastug.com</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><MapPin className="w-3 h-3 text-primary" /> Ntinda NSA Mall, Kampala</span>
           </div>
@@ -146,7 +146,7 @@ export function Navbar() {
                       <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                         <Phone className="w-4 h-4" />
                       </div>
-                      +256 753 998 891
+                      0201000421
                     </a>
                     <a href="mailto:info@codecastug.com" className="flex items-center gap-3 text-sm font-bold hover:text-primary transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
