@@ -28,6 +28,15 @@ export function NewsletterPopup() {
     localStorage.setItem('newsletter-handled', 'true')
   }
 
+  useEffect(() => {
+    if (!isVisible) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [isVisible])
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
@@ -59,25 +68,32 @@ export function NewsletterPopup() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/60 p-4">
-      <div className="relative w-full max-w-[760px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in zoom-in-95 duration-300">
+    <div
+      onClick={handleClose}
+      className="fixed inset-0 z-[2000] flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative flex max-h-[92vh] w-full max-w-[760px] flex-col overflow-y-auto rounded-t-3xl bg-white shadow-2xl animate-in slide-in-from-bottom-4 duration-300 sm:max-h-[90vh] sm:rounded-3xl sm:slide-in-from-bottom-0 sm:zoom-in-95"
+      >
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200"
+          aria-label="Close"
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-gray-600 shadow-sm hover:bg-gray-200 sm:right-4 sm:top-4 sm:h-10 sm:w-10 sm:bg-gray-100"
         >
-          <X className="h-6 w-6" />
+          <X className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
 
         <div className="grid md:grid-cols-2">
-          <div className="bg-gradient-to-br from-[#0E1D30] to-primary p-10 text-white">
-            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+          <div className="bg-gradient-to-br from-[#0E1D30] to-primary p-6 text-white sm:p-10">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 sm:mb-6 sm:h-12 sm:w-12">
               <Mail className="h-6 w-6" />
             </div>
-            <h3 className="mb-4 text-2xl font-bold">Stay Updated!</h3>
-            <p className="mb-6 text-sm text-white/80">
+            <h3 className="mb-3 text-xl font-bold sm:mb-4 sm:text-2xl">Stay Updated!</h3>
+            <p className="mb-4 text-sm text-white/80 sm:mb-6">
               Join our community and never miss an update on technology, entertainment & innovations from CodeCast UG LTD.
             </p>
-            <ul className="space-y-3">
+            <ul className="hidden space-y-3 sm:block">
               {['Latest project updates', 'New service announcements', 'Tech & entertainment tips', 'Exclusive subscriber offers'].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-xs font-medium">
                   <Check className="h-4 w-4 text-accent" /> {item}
@@ -86,7 +102,7 @@ export function NewsletterPopup() {
             </ul>
           </div>
 
-          <div className="p-10">
+          <div className="p-6 sm:p-10">
             {isSubmitted ? (
               <div className="flex h-full flex-col items-center justify-center text-center py-10">
                 <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 animate-bounce">
