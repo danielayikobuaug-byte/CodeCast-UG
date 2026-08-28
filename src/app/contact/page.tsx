@@ -164,7 +164,7 @@ export default function ContactPage() {
                   />
                   <ContactItem 
                     icon={<FileText />} 
-                    title="Airtel Mearchant" 
+                    title="Airtel Merchant" 
                     desc="4427334" 
                   />
                   <ContactItem 
