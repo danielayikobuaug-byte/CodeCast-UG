@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Send, Loader2, ChevronRight, Contact } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -37,6 +37,8 @@ export function Navbar() {
       <div className="hidden lg:block bg-secondary py-2 border-b">
         <div className="container px-4 flex justify-between items-center text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
           <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Contact className="w-3 h-3 text-primary" /> Daniel Ayikobua</span>
+          
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Phone className="w-3 h-3 text-primary" /> +256 753 998 891</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><Mail className="w-3 h-3 text-primary" /> info@codecastug.com</span>
             <span className="flex items-center gap-2 transition-colors hover:text-primary cursor-pointer"><MapPin className="w-3 h-3 text-primary" /> Ntinda NSA Mall, Kampala</span>
@@ -55,28 +57,16 @@ export function Navbar() {
         isScrolled ? "bg-white/95 backdrop-blur-md h-16 shadow-md" : "bg-white h-20"
       )}>
         <div className="container px-4 h-full flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3">
-            {logoAsset?.value ? (
-              <div className="relative h-10 w-10 shrink-0">
-                <Image
-                  src={logoAsset.value}
-                  alt="CodeCast UG Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                  unoptimized
-                />
-              </div>
-            ) : (
-              <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center shrink-0">
-                <div className="w-5 h-5 border-2 border-accent rounded-sm rotate-45" />
-              </div>
-            )}
-            <div className="flex flex-col leading-none">
-              <span className="font-extrabold tracking-tighter text-foreground">
-                <span className="text-2xl">CodeCast</span><span className="ml-1.5 px-1.5 py-0.5 rounded-md bg-[#08AFCB] text-white text-xl">UG</span>
-              </span>
-            </div>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src={logoAsset?.value || "/logo.png"}
+              alt="CodeCast UG Logo"
+              width={1628}
+              height={252}
+              className="h-8 lg:h-10 w-auto object-contain"
+              priority
+              unoptimized
+            />
           </Link>
           
           <div className="hidden lg:flex flex-1 justify-center gap-1">

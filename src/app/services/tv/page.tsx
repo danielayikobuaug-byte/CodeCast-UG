@@ -53,7 +53,7 @@ export default function TVServicesHubPage() {
       <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-foreground">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://picsum.photos/seed/tv-hub/1920/1080"
+            src="https://i.pinimg.com/736x/00/b5/93/00b593713c5409189efe4516eb15283e.jpg"
             alt="TV Services Hero"
             fill
             className="object-cover opacity-40 hero-zoom"
